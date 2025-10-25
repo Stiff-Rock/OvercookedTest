@@ -8,6 +8,8 @@ public class IngredientBehaviour : MonoBehaviour
     [SerializeField] private Color cookedColor;
     [SerializeField] private Color burntColor;
 
+    [SerializeField] private float cookingTime = 2;
+
     private bool isCooked;
     private bool isBurnt;
 
@@ -40,5 +42,10 @@ public class IngredientBehaviour : MonoBehaviour
     public bool IsBurnt()
     {
         return isBurnt;
+    }
+
+    public float GetCookingTime()
+    {
+        return cookingTime;
     }
 }

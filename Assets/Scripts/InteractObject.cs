@@ -1,11 +1,15 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class InteractObject : MonoBehaviour
 {
     private MeshRenderer meshRenderer;
     private Animator animator;
+
+    [SerializeField] private Canvas progressBarCanvas;
+    [SerializeField] private Image progressBarSlider;
+
     private AudioSource audioSource;
     [SerializeField] private AudioClip oven;
     [SerializeField] private AudioClip ding;
@@ -18,8 +22,8 @@ public class InteractObject : MonoBehaviour
     [SerializeField] private GameObject placeArea;
     [SerializeField] private IngredientBehaviour storedIngredient;
 
-
-    [SerializeField] private float cookingTime;
+    [SerializeField] private float cookingTimer;
+    [SerializeField] private float cookingSpeed = 1;
     [SerializeField] private bool isCooking;
 
     private void Awake()
@@ -30,6 +34,21 @@ public class InteractObject : MonoBehaviour
         focusCounter = 0;
     }
 
+    private void Start()
+    {
+        progressBarCanvas.worldCamera = Camera.main;
+    }
+
+    private void Update()
+    {
+        if (isCooking)
+        {
+            float fillAmount = cookingTimer / storedIngredient.GetCookingTime();
+            progressBarSlider.fillAmount = fillAmount;
+            cookingTimer += cookingSpeed * Time.deltaTime;
+        }
+    }
+
     public void Interact()
     {
         if (storedIngredient != null && !storedIngredient.IsBurnt() && !isCooking)
@@ -38,6 +57,8 @@ public class InteractObject : MonoBehaviour
 
     private IEnumerator Cook()
     {
+        progressBarCanvas.gameObject.SetActive(true);
+
         meshRenderer.material.color = Color.red;
 
         audioSource.PlayOneShot(oven);
@@ -45,7 +66,9 @@ public class InteractObject : MonoBehaviour
         isCooking = true;
         animator.SetBool("isCooking", isCooking);
 
-        yield return new WaitForSeconds(cookingTime);
+        cookingTimer = 0;
+
+        yield return new WaitUntil(() => cookingTimer >= storedIngredient.GetCookingTime());
 
         audioSource.Stop();
         audioSource.PlayOneShot(ding);
@@ -57,6 +80,8 @@ public class InteractObject : MonoBehaviour
 
         if (focusCounter < 1) meshRenderer.material.color = defaultColor;
         else meshRenderer.material.color = focusColor;
+
+        progressBarCanvas.gameObject.SetActive(false);
     }
 
     public IngredientBehaviour GiveIngredient()

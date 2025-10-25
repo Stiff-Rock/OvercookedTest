@@ -105,3 +105,4 @@ MonoBehaviour:
   ingredientName: Cucumber
   cookedColor: {r: 0.11222855, g: 0.24528301, b: 0.11235249, a: 0}
   burntColor: {r: 0.14297795, g: 0.16037738, b: 0.14480484, a: 0}
+  cookingTime: 2
