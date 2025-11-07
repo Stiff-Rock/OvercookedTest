@@ -10,7 +10,7 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] private GameObject hand;
 
-    private InteractObject activeAppliance;
+    private InteractiveObject activeAppliance;
 
     [SerializeField] private IngredientBehaviour pickedIngredient;
 
@@ -30,7 +30,7 @@ public class PlayerInteraction : MonoBehaviour
 
         // Check Interact
         if (Keyboard.current[interactKey].wasPressedThisFrame)
-            activeAppliance.Interact();
+            activeAppliance.OnInteract();
 
         // Check Pick/Drop
         if (Keyboard.current[pickDropKey].wasPressedThisFrame)
@@ -44,9 +44,9 @@ public class PlayerInteraction : MonoBehaviour
             activeAppliance.StoreIngredient(pickedIngredient);
             pickedIngredient = null;
         }
-        else if (HasEmptyHands() && !activeAppliance.IsCooking())
+        else if (CanTake())
         {
-            pickedIngredient = activeAppliance.GiveIngredient();
+            pickedIngredient = activeAppliance.TakeIngredient();
             pickedIngredient.gameObject.transform.SetParent(hand.transform);
 
             float offsetDistance = pickedIngredient.gameObject.transform.localScale.z / 1.5f;
@@ -54,34 +54,29 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    private bool CanTake()
+    {
+        return pickedIngredient == null;
+
+    }
     private void OnCollisionEnter(Collision collision)
     {
         // Before checking the new focused object, unfocus any previous one
         if (activeAppliance != null)
         {
-            activeAppliance.Unfocus();
             activeAppliance = null;
         }
 
-        // Check if the collided object is an InteractObject
-        activeAppliance = collision.gameObject.GetComponent<InteractObject>();
-
-        // If its an InteractObject, focus on it
-        if (activeAppliance != null) activeAppliance.Focus();
+        // Check if the collided object is an CookingStationBehaviour
+        activeAppliance = collision.gameObject.GetComponent<InteractiveObject>();
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        // If the exited collision object was the previous InteractObject, unfocus
+        // If the exited collision object was the previous CookingStationBehaviour
         if (activeAppliance != null && collision.gameObject == activeAppliance.gameObject)
         {
-            activeAppliance.Unfocus();
             activeAppliance = null;
         }
-    }
-
-    private bool HasEmptyHands()
-    {
-        return pickedIngredient == null;
     }
 }
