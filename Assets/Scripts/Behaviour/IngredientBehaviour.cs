@@ -9,26 +9,20 @@ public class IngredientBehaviour : MonoBehaviour
     [SerializeField] private Color burntColor;
 
     [SerializeField] private float requiredCookingTime = 2.0f;
-    public float RequiredCookingTime { get; }
 
     [SerializeField] private float requiredBurnTime = 3.0f;
-    public float RequiredBurnTime { get; }
-
 
     [SerializeField] private float cookedTime = 0f;
-    public float CookedTime { get; }
 
     private bool isCooked;
-    public bool IsCooked { get; }
 
     private bool isBurnt;
-    public bool IsBurnt { get; }
 
     private void Awake()
     {
         isCooked = false;
         isBurnt = false;
-        objRenderer = GetComponent<Renderer>();
+        objRenderer = GetComponentInChildren<Renderer>();
     }
 
     public override string ToString()
@@ -44,25 +38,38 @@ public class IngredientBehaviour : MonoBehaviour
 
         if (!isCooked && cookedTime >= requiredCookingTime && cookedTime < requiredBurnTime)
         {
-            Debug.Log("INGREDIENT COOKED");
             isCooked = true;
             objRenderer.material.color = cookedColor;
         }
         else if (isCooked && cookedTime >= requiredBurnTime)
         {
-            Debug.Log("INGREDIENT BURNT");
             isBurnt = true;
             objRenderer.material.color = burntColor;
         }
     }
 
-    public float GetRemainingTime()
+    public float GetRequiredCookingTime()
     {
-        if (!isCooked)
-            return requiredCookingTime - cookedTime;
-        else if (!isBurnt)
-            return requiredBurnTime - cookedTime;
-        else
-            return 0;
+        return requiredCookingTime;
+    }
+
+    public float GetRequiredBurntTime()
+    {
+        return requiredBurnTime;
+    }
+
+    public float GetCookedTime()
+    {
+        return cookedTime;
+    }
+
+    public bool IsCooked()
+    {
+        return isCooked;
+    }
+
+    public bool IsBurnt()
+    {
+        return isBurnt;
     }
 }

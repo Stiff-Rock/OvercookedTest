@@ -48,9 +48,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             pickedIngredient = activeAppliance.TakeIngredient();
             pickedIngredient.gameObject.transform.SetParent(hand.transform);
-
-            float offsetDistance = pickedIngredient.gameObject.transform.localScale.z / 1.5f;
-            pickedIngredient.transform.position = hand.transform.position + hand.transform.forward * offsetDistance;
+            pickedIngredient.transform.position = hand.transform.position;
         }
     }
 
@@ -59,22 +57,19 @@ public class PlayerInteraction : MonoBehaviour
         return pickedIngredient == null;
 
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
         // Before checking the new focused object, unfocus any previous one
-        if (activeAppliance != null)
-        {
-            activeAppliance = null;
-        }
+        if (activeAppliance != null) activeAppliance = null;
 
         // Check if the collided object is an CookingStationBehaviour
-        activeAppliance = collision.gameObject.GetComponent<InteractiveObject>();
+        activeAppliance = collider.gameObject.GetComponent<InteractiveObject>();
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider collider)
     {
         // If the exited collision object was the previous CookingStationBehaviour
-        if (activeAppliance != null && collision.gameObject == activeAppliance.gameObject)
+        if (activeAppliance != null && collider.gameObject == activeAppliance.gameObject)
         {
             activeAppliance = null;
         }

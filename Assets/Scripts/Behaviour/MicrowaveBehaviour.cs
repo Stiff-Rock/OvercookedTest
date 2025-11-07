@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AudioSource))]
 public class MicrowaveBehaviour : InteractiveObject
 {
     private Animator animator;
@@ -31,9 +32,11 @@ public class MicrowaveBehaviour : InteractiveObject
 
     private void Update()
     {
-        if (storedIngredient != null)
+        if (isCooking && storedIngredient != null)
         {
-            float fillAmount = storedIngredient.RequiredCookingTime / storedIngredient.CookedTime;
+            float required = storedIngredient.IsCooked() ? storedIngredient.GetRequiredBurntTime() : storedIngredient.GetRequiredCookingTime();
+            float fillAmount = storedIngredient.GetCookedTime() / required;
+            Debug.Log(storedIngredient.GetCookedTime() + " - " + storedIngredient.GetRequiredCookingTime() + " - " + fillAmount);
             progressBarSlider.fillAmount = fillAmount;
         }
     }
@@ -42,15 +45,14 @@ public class MicrowaveBehaviour : InteractiveObject
     {
         SetCookAnimation(true);
 
-        //TODO: EN EL MICROONDAS NO SE QUEMA
-        if (!storedIngredient.IsCooked)
-            while (!storedIngredient.IsCooked)
+        if (!storedIngredient.IsCooked())
+            while (!storedIngredient.IsCooked())
             {
                 storedIngredient.Cook(Time.deltaTime);
                 yield return null;
             }
-        else if (!storedIngredient.IsBurnt)
-            while (!storedIngredient.IsBurnt)
+        else if (!storedIngredient.IsBurnt())
+            while (!storedIngredient.IsBurnt())
             {
                 storedIngredient.Cook(Time.deltaTime);
                 yield return null;
@@ -65,13 +67,13 @@ public class MicrowaveBehaviour : InteractiveObject
 
         progressBarCanvas.gameObject.SetActive(isCooking);
         animator.SetBool("isCooking", isCooking);
-        audioSource.Stop();
+        if (audioSource.isPlaying) audioSource.Stop();
         audioSource.PlayOneShot(isCooking ? oven : ding);
     }
 
     public override void OnInteract()
     {
-        if (storedIngredient != null && !storedIngredient.IsBurnt)
+        if (storedIngredient != null && !storedIngredient.IsBurnt())
             StartCoroutine(Cook());
     }
 }
