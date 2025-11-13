@@ -5,32 +5,31 @@ using UnityEngine;
 public class InteractiveObject : MonoBehaviour
 {
     [SerializeField] protected GameObject placeArea;
-    [SerializeField] protected IngredientBehaviour storedIngredient;
+    [SerializeField] protected IngredientBehaviour placedIngredient;
 
-    public IngredientBehaviour TakeIngredient()
+    public virtual IngredientBehaviour TakeIngredient()
     {
-        IngredientBehaviour pickedIngredient = storedIngredient;
-        storedIngredient = null;
+        IngredientBehaviour pickedIngredient = placedIngredient;
+        placedIngredient = null;
         return pickedIngredient;
     }
 
-    public void StoreIngredient(IngredientBehaviour newIngredient)
+    public virtual void PlaceIngredient(IngredientBehaviour newIngredient)
     {
         // Store ingredient
-        storedIngredient = newIngredient;
+        placedIngredient = newIngredient;
 
         // Make it a child and put it in the place position
-        storedIngredient.gameObject.transform.SetParent(placeArea.transform);
-        storedIngredient.transform.localPosition = placeArea.transform.position;
+        placedIngredient.gameObject.transform.SetParent(placeArea.transform);
+        placedIngredient.transform.localPosition = placeArea.transform.position;
     }
 
     public virtual void OnInteract()
     {
-        Debug.Log("PARENT INTERACT");
     }
 
-    public bool CanStore()
+    public bool CanReceive()
     {
-        return storedIngredient == null;
+        return placedIngredient == null;
     }
 }

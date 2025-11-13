@@ -11,6 +11,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private GameObject hand;
 
     private InteractiveObject activeAppliance;
+    private IngredientBehaviour nearbyIngredient;
 
     [SerializeField] private IngredientBehaviour pickedIngredient;
 
@@ -26,10 +27,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private void CheckInteraction()
     {
-        if (activeAppliance == null) return;
-
         // Check Interact
-        if (Keyboard.current[interactKey].wasPressedThisFrame)
+        if (Keyboard.current[interactKey].wasPressedThisFrame && activeAppliance)
             activeAppliance.OnInteract();
 
         // Check Pick/Drop
@@ -39,28 +38,46 @@ public class PlayerInteraction : MonoBehaviour
 
     private void PickOrDrop()
     {
-        if (activeAppliance.CanStore())
+        // Place ingredient on appliance
+        if (activeAppliance && pickedIngredient && activeAppliance.CanReceive())
         {
-            activeAppliance.StoreIngredient(pickedIngredient);
+            pickedIngredient.ToggleColliders(false);
+
+            activeAppliance.PlaceIngredient(pickedIngredient);
             pickedIngredient = null;
         }
-        else if (CanTake())
+        // Take ingredient from appliance
+        else if (activeAppliance && !pickedIngredient && !activeAppliance.CanReceive())
         {
+            pickedIngredient.ToggleColliders(false);
+
             pickedIngredient = activeAppliance.TakeIngredient();
             pickedIngredient.gameObject.transform.SetParent(hand.transform);
             pickedIngredient.transform.position = hand.transform.position;
         }
+        // Take nearby ingredient
+        else if (nearbyIngredient && !pickedIngredient)
+        {
+            pickedIngredient.ToggleColliders(false);
+
+            pickedIngredient = activeAppliance.TakeIngredient();
+            pickedIngredient.gameObject.transform.SetParent(hand.transform);
+            pickedIngredient.transform.position = hand.transform.position;
+        }
+        // Drop currently held ingredient
+        else if (pickedIngredient)
+        {
+            pickedIngredient.ToggleColliders(true);
+
+            pickedIngredient.gameObject.transform.SetParent(null);
+            pickedIngredient = null;
+        }
     }
 
-    private bool CanTake()
-    {
-        return pickedIngredient == null;
-
-    }
     private void OnTriggerEnter(Collider collider)
     {
         // Before checking the new focused object, unfocus any previous one
-        if (activeAppliance != null) activeAppliance = null;
+        if (activeAppliance) activeAppliance = null;
 
         // Check if the collided object is an CookingStationBehaviour
         activeAppliance = collider.gameObject.GetComponent<InteractiveObject>();
@@ -69,7 +86,7 @@ public class PlayerInteraction : MonoBehaviour
     private void OnTriggerExit(Collider collider)
     {
         // If the exited collision object was the previous CookingStationBehaviour
-        if (activeAppliance != null && collider.gameObject == activeAppliance.gameObject)
+        if (activeAppliance && collider.gameObject == activeAppliance.gameObject)
         {
             activeAppliance = null;
         }

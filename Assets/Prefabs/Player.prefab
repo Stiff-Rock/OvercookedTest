@@ -179,6 +179,7 @@ MonoBehaviour:
   pickDropKey: 31
   playerColor: {r: 1, g: 0, b: 0, a: 0}
   hand: {fileID: 1622095555161474932}
+  pickedIngredient: {fileID: 0}
 --- !u!1 &1622095555161474932
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +223,7 @@ GameObject:
   - component: {fileID: 507188125695668116}
   - component: {fileID: 3493781526587342703}
   m_Layer: 0
-  m_Name: Head
+  m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -11,18 +11,18 @@ public class StoveBehaviour : InteractiveObject
 
     private void Update()
     {
-        if (storedIngredient != null && !storedIngredient.IsBurnt())
+        if (placedIngredient && !placedIngredient.IsBurnt())
         {
-            storedIngredient.Cook(Time.deltaTime);
+            placedIngredient.Cook(Time.deltaTime);
 
-            if (storedIngredient.IsCooked() && !storedIngredient.IsBurnt())
+            if (placedIngredient.IsCooked() && !placedIngredient.IsBurnt())
                 UpdateProgressBar();
         }
     }
 
     private void UpdateProgressBar()
     {
-        float fillAmount = storedIngredient.GetRequiredCookingTime() / storedIngredient.GetCookedTime();
+        float fillAmount = placedIngredient.GetRequiredCookingTime() / placedIngredient.GetCookedTime();
         progressBarSlider.fillAmount = fillAmount;
     }
 }

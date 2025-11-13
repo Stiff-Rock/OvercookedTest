@@ -32,11 +32,11 @@ public class MicrowaveBehaviour : InteractiveObject
 
     private void Update()
     {
-        if (isCooking && storedIngredient != null)
+        if (isCooking && placedIngredient)
         {
-            float required = storedIngredient.IsCooked() ? storedIngredient.GetRequiredBurntTime() : storedIngredient.GetRequiredCookingTime();
-            float fillAmount = storedIngredient.GetCookedTime() / required;
-            Debug.Log(storedIngredient.GetCookedTime() + " - " + storedIngredient.GetRequiredCookingTime() + " - " + fillAmount);
+            float required = placedIngredient.IsCooked() ? placedIngredient.GetRequiredBurntTime() : placedIngredient.GetRequiredCookingTime();
+            float fillAmount = placedIngredient.GetCookedTime() / required;
+            Debug.Log(placedIngredient.GetCookedTime() + " - " + placedIngredient.GetRequiredCookingTime() + " - " + fillAmount);
             progressBarSlider.fillAmount = fillAmount;
         }
     }
@@ -45,16 +45,16 @@ public class MicrowaveBehaviour : InteractiveObject
     {
         SetCookAnimation(true);
 
-        if (!storedIngredient.IsCooked())
-            while (!storedIngredient.IsCooked())
+        if (!placedIngredient.IsCooked())
+            while (!placedIngredient.IsCooked())
             {
-                storedIngredient.Cook(Time.deltaTime);
+                placedIngredient.Cook(Time.deltaTime);
                 yield return null;
             }
-        else if (!storedIngredient.IsBurnt())
-            while (!storedIngredient.IsBurnt())
+        else if (!placedIngredient.IsBurnt())
+            while (!placedIngredient.IsBurnt())
             {
-                storedIngredient.Cook(Time.deltaTime);
+                placedIngredient.Cook(Time.deltaTime);
                 yield return null;
             }
 
@@ -73,7 +73,7 @@ public class MicrowaveBehaviour : InteractiveObject
 
     public override void OnInteract()
     {
-        if (storedIngredient != null && !storedIngredient.IsBurnt())
+        if (placedIngredient && !placedIngredient.IsBurnt())
             StartCoroutine(Cook());
     }
 }
