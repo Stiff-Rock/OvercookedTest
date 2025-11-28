@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TrashBehaviour : InteractiveObject
+public class TrashBehaviour : InteractiveAppliance
 {
     private Animation anim;
 
@@ -9,7 +9,7 @@ public class TrashBehaviour : InteractiveObject
         anim = GetComponent<Animation>();
     }
 
-    public override void PlaceIngredient(IngredientBehaviour dropped)
+    public override void PlaceItem(PickableItemBehaviour dropped)
     {
         anim.Play();
         Destroy(dropped.gameObject);

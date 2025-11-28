@@ -270,6 +270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3571471325885336205, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
+    - {fileID: 7875018348073005786, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7909902342630956993, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
     m_AddedGameObjects:
@@ -320,8 +321,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 514be9e30483e094a9c6190e41d95255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MicrowaveBehaviour
+  applianceName: Microwave
   placeArea: {fileID: 3234735041826596134}
-  storedIngredient: {fileID: 0}
+  _placedItem: {fileID: 0}
   progressBarCanvas: {fileID: 4183983217337747044}
   progressBarSlider: {fileID: 7173167737732182457}
   oven: {fileID: 8300000, guid: 9b28322a63490624fb33343377df1708, type: 3}

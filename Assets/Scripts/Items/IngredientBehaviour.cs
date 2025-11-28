@@ -1,14 +1,9 @@
 using UnityEngine;
 
-[RequireComponent(typeof(SphereCollider))]
-public class IngredientBehaviour : MonoBehaviour
+public class IngredientBehaviour : PickableItemBehaviour
 {
     private Renderer objRenderer;
 
-    private Collider physicsCollider;
-    private Collider triggerCollider;
-
-    [SerializeField] private string ingredientName;
     [SerializeField] private Color cookedColor;
     [SerializeField] private Color burntColor;
 
@@ -22,18 +17,13 @@ public class IngredientBehaviour : MonoBehaviour
 
     private bool isBurnt;
 
-    private void Awake()
+    private new void Awake()
     {
+        base.Awake();
+
         isCooked = false;
         isBurnt = false;
         objRenderer = GetComponentInChildren<Renderer>();
-        triggerCollider = GetComponent<Collider>();
-        physicsCollider = GetComponentInChildren<Collider>();
-    }
-
-    public override string ToString()
-    {
-        return ingredientName;
     }
 
     public void Cook(float cookTime)
@@ -54,13 +44,7 @@ public class IngredientBehaviour : MonoBehaviour
         }
     }
 
-    public void ToggleColliders(bool isEnabled)
-    {
-        triggerCollider.enabled = isEnabled;
-        physicsCollider.enabled = isEnabled;
-    }
-
-    // Getters and Setters
+    #region Getters and Setters
 
     public float GetRequiredCookingTime()
     {
@@ -86,4 +70,6 @@ public class IngredientBehaviour : MonoBehaviour
     {
         return isBurnt;
     }
+
+    #endregion
 }

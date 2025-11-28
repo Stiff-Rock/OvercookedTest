@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5857561505183304859}
-  - component: {fileID: 3571471325885336205}
   - component: {fileID: 1783495493793282276}
   - component: {fileID: 8394062681217099880}
+  - component: {fileID: 7875018348073005786}
   m_Layer: 0
-  m_Name: AbstractFurniture
+  m_Name: DefaultFurniture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,20 +36,6 @@ Transform:
   - {fileID: 3028658354703722335}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3571471325885336205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4305021953342692540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbf222ecb3b19b4d900eb6945f9dd2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractiveObject
-  placeArea: {fileID: 7596002972758335588}
-  storedIngredient: {fileID: 0}
 --- !u!65 &1783495493793282276
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -98,6 +84,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &7875018348073005786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4305021953342692540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f59edb9a82c41a4ea873a09eac90d3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractiveAppliance
+  applianceName: DefaultFurniture
+  placeArea: {fileID: 7596002972758335588}
+  _placedItem: {fileID: 0}
 --- !u!1 &7596002972758335588
 GameObject:
   m_ObjectHideFlags: 0

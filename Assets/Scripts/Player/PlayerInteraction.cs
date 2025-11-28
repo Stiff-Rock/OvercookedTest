@@ -10,10 +10,10 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] private GameObject hand;
 
-    private InteractiveObject activeAppliance;
-    private IngredientBehaviour nearbyIngredient;
+    private InteractiveAppliance activeAppliance;
+    private PickableItemBehaviour nearbyItem;
 
-    [SerializeField] private IngredientBehaviour pickedIngredient;
+    [SerializeField] private PickableItemBehaviour pickedItem;
 
     private void Awake()
     {
@@ -38,39 +38,29 @@ public class PlayerInteraction : MonoBehaviour
 
     private void PickOrDrop()
     {
-        // Place ingredient on appliance
-        if (activeAppliance && pickedIngredient && activeAppliance.CanReceive())
+        // Place item on appliance
+        if (activeAppliance && pickedItem && activeAppliance.CanReceive())
         {
-            pickedIngredient.ToggleColliders(false);
-
-            activeAppliance.PlaceIngredient(pickedIngredient);
-            pickedIngredient = null;
+            activeAppliance.PlaceItem(pickedItem);
+            pickedItem = null;
         }
-        // Take ingredient from appliance
-        else if (activeAppliance && !pickedIngredient && !activeAppliance.CanReceive())
+        // Take item from appliance
+        else if (activeAppliance && !pickedItem && !activeAppliance.CanReceive())
         {
-            pickedIngredient.ToggleColliders(false);
-
-            pickedIngredient = activeAppliance.TakeIngredient();
-            pickedIngredient.gameObject.transform.SetParent(hand.transform);
-            pickedIngredient.transform.position = hand.transform.position;
+            pickedItem = activeAppliance.TakeItem();
+            pickedItem.gameObject.transform.SetParent(hand.transform);
         }
-        // Take nearby ingredient
-        else if (nearbyIngredient && !pickedIngredient)
+        // Take nearby item
+        else if (nearbyItem && !pickedItem)
         {
-            pickedIngredient.ToggleColliders(false);
-
-            pickedIngredient = activeAppliance.TakeIngredient();
-            pickedIngredient.gameObject.transform.SetParent(hand.transform);
-            pickedIngredient.transform.position = hand.transform.position;
+            pickedItem = activeAppliance.TakeItem();
+            pickedItem.gameObject.transform.SetParent(hand.transform);
         }
-        // Drop currently held ingredient
-        else if (pickedIngredient)
+        // Drop currently held item
+        else if (pickedItem)
         {
-            pickedIngredient.ToggleColliders(true);
-
-            pickedIngredient.gameObject.transform.SetParent(null);
-            pickedIngredient = null;
+            pickedItem.gameObject.transform.SetParent(null);
+            pickedItem = null;
         }
     }
 
@@ -80,7 +70,7 @@ public class PlayerInteraction : MonoBehaviour
         if (activeAppliance) activeAppliance = null;
 
         // Check if the collided object is an CookingStationBehaviour
-        activeAppliance = collider.gameObject.GetComponent<InteractiveObject>();
+        activeAppliance = collider.gameObject.GetComponent<InteractiveAppliance>();
     }
 
     private void OnTriggerExit(Collider collider)

@@ -251,6 +251,22 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3839567849625958024, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
   m_PrefabInstance: {fileID: 4345890159531129593}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3215893854622688366 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1220073623483735703, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
+  m_PrefabInstance: {fileID: 4345890159531129593}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!223 &8448030457222190003 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 5292533184395684170, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
+  m_PrefabInstance: {fileID: 4345890159531129593}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7073507836190834679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -309,6 +325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3571471325885336205, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
+    - {fileID: 7875018348073005786, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7596002972758335588, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
     - {fileID: 7909902342630956993, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
@@ -349,8 +366,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 991795ddca53b4546835ba334ff47d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StoveBehaviour
+  applianceName: Stove
   placeArea: {fileID: 425150704759046659}
-  storedIngredient: {fileID: 0}
-  progressBarCanvas: {fileID: 0}
-  progressBarSlider: {fileID: 0}
+  _placedItem: {fileID: 0}
+  progressBarCanvas: {fileID: 8448030457222190003}
+  progressBarSlider: {fileID: 3215893854622688366}
   cookingPower: 1

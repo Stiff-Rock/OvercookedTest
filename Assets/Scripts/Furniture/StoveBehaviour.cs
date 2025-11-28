@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StoveBehaviour : InteractiveObject
+//TODO: DESHABILITAR UPDATE SI NO VA A COCINAR
+
+public class StoveBehaviour : InteractiveAppliance
 {
     [Header("GUI")]
     [SerializeField] private Canvas progressBarCanvas;
@@ -22,7 +24,10 @@ public class StoveBehaviour : InteractiveObject
 
     private void UpdateProgressBar()
     {
-        float fillAmount = placedIngredient.GetRequiredCookingTime() / placedIngredient.GetCookedTime();
-        progressBarSlider.fillAmount = fillAmount;
+        if (placedIngredient)
+        {
+            float fillAmount = placedIngredient.GetRequiredCookingTime() / placedIngredient.GetCookedTime();
+            progressBarSlider.fillAmount = fillAmount;
+        }
     }
 }

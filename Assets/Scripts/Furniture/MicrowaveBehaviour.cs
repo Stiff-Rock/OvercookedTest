@@ -4,7 +4,10 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AudioSource))]
-public class MicrowaveBehaviour : InteractiveObject
+
+//TODO: DESHABILITAR UPDATE SI NO VA A COCINAR
+
+public class MicrowaveBehaviour : InteractiveAppliance
 {
     private Animator animator;
 
@@ -25,8 +28,9 @@ public class MicrowaveBehaviour : InteractiveObject
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void Start()
+    private new void Start()
     {
+        base.Start();
         progressBarCanvas.worldCamera = Camera.main;
     }
 
@@ -43,22 +47,25 @@ public class MicrowaveBehaviour : InteractiveObject
 
     private IEnumerator Cook()
     {
-        SetCookAnimation(true);
+        if (placedIngredient)
+        {
+            SetCookAnimation(true);
 
-        if (!placedIngredient.IsCooked())
-            while (!placedIngredient.IsCooked())
-            {
-                placedIngredient.Cook(Time.deltaTime);
-                yield return null;
-            }
-        else if (!placedIngredient.IsBurnt())
-            while (!placedIngredient.IsBurnt())
-            {
-                placedIngredient.Cook(Time.deltaTime);
-                yield return null;
-            }
+            if (!placedIngredient.IsCooked())
+                while (!placedIngredient.IsCooked())
+                {
+                    placedIngredient.Cook(Time.deltaTime);
+                    yield return null;
+                }
+            else if (!placedIngredient.IsBurnt())
+                while (!placedIngredient.IsBurnt())
+                {
+                    placedIngredient.Cook(Time.deltaTime);
+                    yield return null;
+                }
 
-        SetCookAnimation(false);
+            SetCookAnimation(false);
+        }
     }
 
     private void SetCookAnimation(bool isCooking)
