@@ -28,7 +28,7 @@ public class MicrowaveBehaviour : InteractiveAppliance
         audioSource = GetComponent<AudioSource>();
     }
 
-    private new void Start()
+    protected override void Start()
     {
         base.Start();
         progressBarCanvas.worldCamera = Camera.main;

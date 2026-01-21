@@ -12,7 +12,7 @@ public class PickableItemBehaviour : MonoBehaviour
 
     [SerializeField] protected string itemName;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         triggerCollider = GetComponent<Collider>();
         physicsCollider = GetComponentInChildren<Collider>();
@@ -22,9 +22,8 @@ public class PickableItemBehaviour : MonoBehaviour
     //TODO: ALSO LOCK RIGIDBODY ROTATION AND POSITION WHEN PICKED AND PLACED
     public void ToggleColliders(bool isEnabled)
     {
-        triggerCollider.enabled = isEnabled;
-        physicsCollider.enabled = isEnabled;
-        
+        if (triggerCollider) triggerCollider.enabled = isEnabled;
+        if (physicsCollider) physicsCollider.enabled = isEnabled;
     }
 
     public void OnTransformParentChanged()

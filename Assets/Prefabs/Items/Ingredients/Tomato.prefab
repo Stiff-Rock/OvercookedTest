@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2432664796356646805}
   - component: {fileID: 2787323258818704439}
   - component: {fileID: 6420014811998031613}
-  - component: {fileID: 2585677595553601365}
+  - component: {fileID: 1157654470088542139}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -91,8 +91,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2585677595553601365
-BoxCollider:
+--- !u!135 &1157654470088542139
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -110,7 +110,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3535233, y: 0.32990444, z: 0.3535233}
+  m_Radius: 0.18
   m_Center: {x: 0, y: 0.15307295, z: 0}
 --- !u!1001 &4639137169512361018
 PrefabInstance:
@@ -207,9 +207,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01af765e458782847853de9aaf2c144a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IngredientBehaviour
+  physicsCollider: {fileID: 1157654470088542139}
+  triggerCollider: {fileID: 5756636010764359861}
   itemName: Tomato
   cookedColor: {r: 0.3301887, g: 0.126157, b: 0.126157, a: 0}
   burntColor: {r: 0.1792453, g: 0.13781595, b: 0.13781595, a: 0}
   requiredCookingTime: 2
   requiredBurnTime: 3
   cookedTime: 0
+--- !u!135 &5756636010764359861 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 1117503342546564239, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
+  m_PrefabInstance: {fileID: 4639137169512361018}
+  m_PrefabAsset: {fileID: 0}

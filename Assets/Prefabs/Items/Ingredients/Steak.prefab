@@ -111,8 +111,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.43180528, y: 0.07097639, z: 0.7285945}
-  m_Center: {x: 0.0059026717, y: 0.029691724, z: -0.021954468}
+  m_Size: {x: 0.43, y: 0.071, z: 0.73}
+  m_Center: {x: 0.006, y: 0.03, z: -0.02}
 --- !u!1001 &5187796790749789846
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -203,6 +203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01af765e458782847853de9aaf2c144a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IngredientBehaviour
+  physicsCollider: {fileID: 8308636253248488214}
+  triggerCollider: {fileID: 5223307981810158105}
   itemName: Steak
   cookedColor: {r: 0.3301887, g: 0.126157, b: 0.126157, a: 0}
   burntColor: {r: 0.1792453, g: 0.13781595, b: 0.13781595, a: 0}
@@ -212,5 +214,10 @@ MonoBehaviour:
 --- !u!4 &3652328421329860625 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8453657722525615751, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
+  m_PrefabInstance: {fileID: 5187796790749789846}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &5223307981810158105 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 1117503342546564239, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
   m_PrefabInstance: {fileID: 5187796790749789846}
   m_PrefabAsset: {fileID: 0}

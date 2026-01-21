@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(MeshRenderer))]
 public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private Key interactKey;

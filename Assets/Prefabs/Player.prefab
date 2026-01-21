@@ -72,7 +72,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7f02ef22b0b001144aa22518261de7b5, type: 2}
+  - {fileID: 2100000, guid: e1bfed8edf261b0459aaa05f5f53e33f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
   pickDropKey: 31
   playerColor: {r: 1, g: 0, b: 0, a: 0}
   hand: {fileID: 1622095555161474932}
-  pickedIngredient: {fileID: 0}
+  pickedItem: {fileID: 0}
 --- !u!1 &1622095555161474932
 GameObject:
   m_ObjectHideFlags: 0

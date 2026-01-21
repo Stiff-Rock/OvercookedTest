@@ -17,7 +17,7 @@ public class IngredientBehaviour : PickableItemBehaviour
 
     private bool isBurnt;
 
-    private new void Awake()
+    protected override void Awake()
     {
         base.Awake();
 

@@ -43,7 +43,7 @@ public class InteractiveAppliance : MonoBehaviour
     protected IngredientBehaviour placedIngredient;
     protected UtensilBehaviour placedUtensil;
 
-    protected void Start()
+    protected virtual void Start()
     {
         PlacedItem = placeArea.GetComponentInChildren<PickableItemBehaviour>();
     }
