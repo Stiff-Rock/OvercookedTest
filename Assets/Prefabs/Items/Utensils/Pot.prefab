@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1117503342546564239, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8453657722525615751, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -50,7 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8608467126845538537, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
       propertyPath: m_Name
-      value: Pot Variant
+      value: Pot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720304453398813611, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
+      propertyPath: m_Constraints
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2328871098115649445, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
@@ -65,6 +73,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7040309307198761272}
   m_SourcePrefab: {fileID: 100100000, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
+--- !u!135 &147031671208284434 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 1117503342546564239, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
+  m_PrefabInstance: {fileID: 975161089506846109}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8708021251248366362 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8453657722525615751, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
@@ -87,6 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd758858fcf0c5b4594b91fdb449abad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UtensilBehaviour
+  physicsCollider: {fileID: 2957162538355437508}
+  triggerCollider: {fileID: 147031671208284434}
   itemName: Pot
 --- !u!1001 &4910206540571128602
 PrefabInstance:

@@ -1,8 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(Rigidbody))]
-
 [ExecuteInEditMode]
 public class PickableItemBehaviour : MonoBehaviour
 {
@@ -14,8 +12,6 @@ public class PickableItemBehaviour : MonoBehaviour
 
     protected virtual void Awake()
     {
-        triggerCollider = GetComponent<Collider>();
-        physicsCollider = GetComponentInChildren<Collider>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -24,6 +20,29 @@ public class PickableItemBehaviour : MonoBehaviour
     {
         if (triggerCollider) triggerCollider.enabled = isEnabled;
         if (physicsCollider) physicsCollider.enabled = isEnabled;
+
+        if (isEnabled)
+        {
+            rb.constraints = RigidbodyConstraints.None;
+        }
+        else
+        {
+            rb.constraints =
+                // Freeze Position
+                RigidbodyConstraints.FreezePositionX
+                | RigidbodyConstraints.FreezePositionY
+                | RigidbodyConstraints.FreezePositionZ
+                // Freeze Rotation
+                | RigidbodyConstraints.FreezeRotationX
+                | RigidbodyConstraints.FreezeRotationY
+                | RigidbodyConstraints.FreezeRotationZ;
+        }
+    }
+
+    private void UpdateTransform()
+    {
+        transform.position = transform.parent.position;
+        transform.localRotation = Quaternion.identity;
     }
 
     public void OnTransformParentChanged()
@@ -33,20 +52,14 @@ public class PickableItemBehaviour : MonoBehaviour
         if (newParentTransformExists) UpdateTransform();
     }
 
-    private void UpdateTransform()
-    {
-        transform.position = transform.parent.position;
-        transform.localRotation = Quaternion.identity;
-    }
-
     #region Getters and Setters
 
-    public bool isIngredient()
+    public bool IsIngredient()
     {
         return this is IngredientBehaviour;
     }
 
-    public bool isUtensil()
+    public bool IsUtensil()
     {
         return this is UtensilBehaviour;
     }

@@ -165,7 +165,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.9
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8720304453398813611
 Rigidbody:
@@ -206,6 +206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 884b86ce282c3f042b0f5ef618524e3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickableItemBehaviour
-  physicsCollider: {fileID: 0}
-  triggerCollider: {fileID: 0}
+  physicsCollider: {fileID: 8621474153571938011}
+  triggerCollider: {fileID: 1117503342546564239}
   itemName: DefaultItem

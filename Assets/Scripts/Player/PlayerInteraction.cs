@@ -30,11 +30,15 @@ public class PlayerInteraction : MonoBehaviour
     {
         // Check Interact
         if (Keyboard.current[interactKey].wasPressedThisFrame && activeAppliance)
+        {
             activeAppliance.OnInteract();
+        }
 
         // Check Pick/Drop
         if (Keyboard.current[pickDropKey].wasPressedThisFrame)
+        {
             PickOrDrop();
+        }
     }
 
     private void PickOrDrop()
@@ -54,7 +58,8 @@ public class PlayerInteraction : MonoBehaviour
         // Take nearby item
         else if (nearbyItem && !pickedItem)
         {
-            pickedItem = activeAppliance.TakeItem();
+            pickedItem = nearbyItem;
+            nearbyItem = null;
             pickedItem.gameObject.transform.SetParent(hand.transform);
         }
         // Drop currently held item
@@ -67,19 +72,29 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        // Before checking the new focused object, unfocus any previous one
+        // Before checking the new focused object, unfocus any previous ones
         if (activeAppliance) activeAppliance = null;
+        if (nearbyItem) nearbyItem = null;
 
         // Check if the collided object is an CookingStationBehaviour
         activeAppliance = collider.gameObject.GetComponent<InteractiveAppliance>();
+
+        if (!activeAppliance)
+            nearbyItem = collider.gameObject.GetComponent<PickableItemBehaviour>();
     }
 
     private void OnTriggerExit(Collider collider)
     {
-        // If the exited collision object was the previous CookingStationBehaviour
+        // If the exited collision object was the previous InteractiveAppliance
         if (activeAppliance && collider.gameObject == activeAppliance.gameObject)
         {
             activeAppliance = null;
+        }
+
+        // If the exited collision object was the previous PickableItemBehaviour
+        if (nearbyItem && collider.gameObject == nearbyItem.gameObject)
+        {
+            nearbyItem = null;
         }
     }
 }

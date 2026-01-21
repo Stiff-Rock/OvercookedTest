@@ -21,12 +21,12 @@ public class InteractiveAppliance : MonoBehaviour
 
             if (_placedItem)
             {
-                if (_placedItem.isIngredient())
+                if (_placedItem.IsIngredient())
                 {
                     placedIngredient = _placedItem.GetComponent<IngredientBehaviour>();
                     placedUtensil = null;
                 }
-                else if (_placedItem.isUtensil())
+                else if (_placedItem.IsUtensil())
                 {
                     placedUtensil = _placedItem.GetComponent<UtensilBehaviour>();
                     placedIngredient = null;

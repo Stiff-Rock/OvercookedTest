@@ -40,11 +40,11 @@ public class MicrowaveBehaviour : InteractiveAppliance
         {
             float required = placedIngredient.IsCooked() ? placedIngredient.GetRequiredBurntTime() : placedIngredient.GetRequiredCookingTime();
             float fillAmount = placedIngredient.GetCookedTime() / required;
-            Debug.Log(placedIngredient.GetCookedTime() + " - " + placedIngredient.GetRequiredCookingTime() + " - " + fillAmount);
             progressBarSlider.fillAmount = fillAmount;
         }
     }
 
+    // TODO: REPENSAR ESTO
     private IEnumerator Cook()
     {
         if (placedIngredient)
@@ -52,17 +52,21 @@ public class MicrowaveBehaviour : InteractiveAppliance
             SetCookAnimation(true);
 
             if (!placedIngredient.IsCooked())
+            {
                 while (!placedIngredient.IsCooked())
                 {
                     placedIngredient.Cook(Time.deltaTime);
                     yield return null;
                 }
+            }
             else if (!placedIngredient.IsBurnt())
+            {
                 while (!placedIngredient.IsBurnt())
                 {
                     placedIngredient.Cook(Time.deltaTime);
                     yield return null;
                 }
+            }
 
             SetCookAnimation(false);
         }

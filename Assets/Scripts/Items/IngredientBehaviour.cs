@@ -36,6 +36,7 @@ public class IngredientBehaviour : PickableItemBehaviour
         {
             isCooked = true;
             objRenderer.material.color = cookedColor;
+            cookedTime = 0;
         }
         else if (isCooked && cookedTime >= requiredBurnTime)
         {

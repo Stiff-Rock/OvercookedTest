@@ -122,7 +122,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1117503342546564239, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
       propertyPath: m_Radius
-      value: 0.5
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117503342546564239, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1117503342546564239, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
       propertyPath: m_IsTrigger
@@ -171,6 +175,10 @@ PrefabInstance:
     - target: {fileID: 8608467126845538537, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
       propertyPath: m_Name
       value: Tomato
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720304453398813611, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
+      propertyPath: m_Constraints
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2328871098115649445, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}

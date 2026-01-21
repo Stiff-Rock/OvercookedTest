@@ -99,6 +99,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1117503342546564239, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117503342546564239, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8453657722525615751, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -141,7 +149,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8608467126845538537, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
       propertyPath: m_Name
-      value: Pan Variant
+      value: Pan
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720304453398813611, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
+      propertyPath: m_Constraints
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2328871098115649445, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
@@ -173,9 +185,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd758858fcf0c5b4594b91fdb449abad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UtensilBehaviour
+  physicsCollider: {fileID: 4042542881544782007}
+  triggerCollider: {fileID: 7295256517775047736}
   itemName: Pan
 --- !u!4 &2300972794994331184 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8453657722525615751, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
+  m_PrefabInstance: {fileID: 7692111296096438455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &7295256517775047736 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 1117503342546564239, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
   m_PrefabInstance: {fileID: 7692111296096438455}
   m_PrefabAsset: {fileID: 0}
