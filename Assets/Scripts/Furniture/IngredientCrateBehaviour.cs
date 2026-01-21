@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class IngredientCrate : InteractiveAppliance
 {
@@ -9,12 +8,18 @@ public class IngredientCrate : InteractiveAppliance
 
     private void Awake()
     {
-        anim = GetComponent<Animation>();
+        anim = GetComponentInChildren<Animation>();
     }
 
     public override PickableItemBehaviour TakeItem()
     {
+        Debug.Log("PickableItemBehaviour");
         anim.Play();
         return Instantiate(ingredient.gameObject).GetComponent<PickableItemBehaviour>();
+    }
+
+    public override bool CanReceive()
+    {
+        return true;
     }
 }

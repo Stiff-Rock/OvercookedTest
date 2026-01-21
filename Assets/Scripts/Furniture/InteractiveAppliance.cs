@@ -69,7 +69,7 @@ public class InteractiveAppliance : MonoBehaviour
     {
     }
 
-    public bool CanReceive()
+    public virtual bool CanReceive()
     {
         return PlacedItem == null;
     }

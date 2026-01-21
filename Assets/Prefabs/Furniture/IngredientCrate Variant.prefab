@@ -8,6 +8,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1783495493793282276, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783495493793282276, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783495493793282276, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
+      propertyPath: m_Size.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783495493793282276, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4305021953342692540, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
       propertyPath: m_Name
       value: IngredientCrate Variant

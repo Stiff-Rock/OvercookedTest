@@ -41,6 +41,8 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    // TODO: REFACTOR THIS IS ALL BROKEN 
+    // BUG: REFACTOR THIS IS ALL BROKEN 
     private void PickOrDrop()
     {
         // Place item on appliance
