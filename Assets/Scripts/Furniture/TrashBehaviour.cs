@@ -2,16 +2,17 @@ using UnityEngine;
 
 public class TrashBehaviour : InteractiveAppliance
 {
-    private Animation anim;
+    private Animator anim;
+    private static readonly int TrashAnimationTriggerKey = Animator.StringToHash("Use");
 
     private void Awake()
     {
-        anim = GetComponent<Animation>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     public override void PlaceItem(PickableItemBehaviour dropped)
     {
-        anim.Play();
+        anim.SetTrigger(TrashAnimationTriggerKey);
         Destroy(dropped.gameObject);
     }
 }

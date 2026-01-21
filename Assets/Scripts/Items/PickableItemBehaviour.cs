@@ -15,7 +15,11 @@ public class PickableItemBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    //TODO: ALSO LOCK RIGIDBODY ROTATION AND POSITION WHEN PICKED AND PLACED
+    private void Start()
+    {
+        ToggleColliders(transform.parent == null);
+    }
+
     public void ToggleColliders(bool isEnabled)
     {
         if (triggerCollider) triggerCollider.enabled = isEnabled;

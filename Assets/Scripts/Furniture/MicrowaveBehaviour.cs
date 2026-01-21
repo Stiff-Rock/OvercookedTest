@@ -4,9 +4,6 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AudioSource))]
-
-//TODO: DESHABILITAR UPDATE SI NO VA A COCINAR
-
 public class MicrowaveBehaviour : InteractiveAppliance
 {
     private Animator animator;
@@ -75,6 +72,7 @@ public class MicrowaveBehaviour : InteractiveAppliance
     private void SetCookAnimation(bool isCooking)
     {
         this.isCooking = isCooking;
+        this.enabled = isCooking;
 
         progressBarCanvas.gameObject.SetActive(isCooking);
         animator.SetBool("isCooking", isCooking);
@@ -84,7 +82,8 @@ public class MicrowaveBehaviour : InteractiveAppliance
 
     public override void OnInteract()
     {
-        if (placedIngredient && !placedIngredient.IsBurnt())
+        if (!isCooking && placedIngredient && !placedIngredient.IsBurnt()) { 
             StartCoroutine(Cook());
+        }
     }
 }
