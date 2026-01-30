@@ -370,19 +370,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7058841767135866101, guid: 1a5a4f96a4ebf234aac4851b6a173ad9, type: 3}
       propertyPath: interactionBox.x
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7058841767135866101, guid: 1a5a4f96a4ebf234aac4851b6a173ad9, type: 3}
       propertyPath: interactionBox.y
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7058841767135866101, guid: 1a5a4f96a4ebf234aac4851b6a173ad9, type: 3}
       propertyPath: interactionBox.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7058841767135866101, guid: 1a5a4f96a4ebf234aac4851b6a173ad9, type: 3}
       propertyPath: interactionRange
-      value: 1
+      value: 1.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
