@@ -46,7 +46,7 @@ public class MicrowaveBehaviour : InteractiveAppliance
     {
         if (placedIngredient)
         {
-            SetCookAnimation(true);
+            ToggleCookAnimation(true);
 
             if (!placedIngredient.IsCooked())
             {
@@ -65,14 +65,14 @@ public class MicrowaveBehaviour : InteractiveAppliance
                 }
             }
 
-            SetCookAnimation(false);
+            ToggleCookAnimation(false);
         }
     }
 
-    private void SetCookAnimation(bool isCooking)
+    private void ToggleCookAnimation(bool isCooking)
     {
         this.isCooking = isCooking;
-        this.enabled = isCooking;
+        enabled = isCooking;
 
         progressBarCanvas.gameObject.SetActive(isCooking);
         animator.SetBool("isCooking", isCooking);

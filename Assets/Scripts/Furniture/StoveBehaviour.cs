@@ -30,4 +30,10 @@ public class StoveBehaviour : InteractiveAppliance
             progressBarSlider.fillAmount = fillAmount;
         }
     }
+
+    public override void PlaceItem(PickableItemBehaviour newItem)
+    {
+        base.PlaceItem(newItem);
+        enabled = placedIngredient;
+    }
 }

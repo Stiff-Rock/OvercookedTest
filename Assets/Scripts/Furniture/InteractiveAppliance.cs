@@ -2,8 +2,6 @@ using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Rigidbody))]
-
-//TODO: CAMBIAR A COMPONENTES EN VEZ DE HERENCIA
 public class InteractiveAppliance : MonoBehaviour
 {
     [SerializeField] protected string applianceName;

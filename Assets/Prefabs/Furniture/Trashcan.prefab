@@ -41,7 +41,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1783495493793282276, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
       propertyPath: m_Center.z
-      value: -0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3571471325885336205, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
       propertyPath: placeArea
