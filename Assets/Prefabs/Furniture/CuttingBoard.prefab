@@ -167,7 +167,8 @@ PrefabInstance:
       propertyPath: applianceName
       value: CuttingBoard
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7875018348073005786, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7909902342630956993, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
     m_AddedGameObjects:
@@ -177,13 +178,58 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5857561505183304859, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4723212012744725190}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4305021953342692540, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1921785500580010374}
+    - targetCorrespondingSourceObject: {fileID: 4305021953342692540, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9159852451975281369}
   m_SourcePrefab: {fileID: 100100000, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
 --- !u!4 &391127075507063429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5857561505183304859, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
   m_PrefabInstance: {fileID: 6064005809578624542}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4417399370065159802 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7596002972758335588, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
+  m_PrefabInstance: {fileID: 6064005809578624542}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8041510903371864738 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4305021953342692540, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
+  m_PrefabInstance: {fileID: 6064005809578624542}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1921785500580010374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8041510903371864738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e416fd8578deb347971bb5e6ede0dd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProgressSliderBehaviour
+  progressBarCanvas: {fileID: 1247737343687501568}
+  progressBarSlider: {fileID: 5245728315896418525}
+--- !u!114 &9159852451975281369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8041510903371864738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecbf9968414eb3b40abc0d5a1c7a86ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CuttingBoardBehaviour
+  applianceName: CuttingBoard
+  placeArea: {fileID: 4417399370065159802}
+  _placedItem: {fileID: 0}
 --- !u!1001 &6350638850664336970
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -234,7 +280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3839567849625958024, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.5596
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3839567849625958024, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
       propertyPath: m_LocalRotation.w
@@ -254,11 +300,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3839567849625958024, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.56424
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3839567849625958024, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.33741
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3839567849625958024, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -288,11 +334,31 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7621168116940883807, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
+--- !u!223 &1247737343687501568 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 5292533184395684170, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
+  m_PrefabInstance: {fileID: 6350638850664336970}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5245728315896418525 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1220073623483735703, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
+  m_PrefabInstance: {fileID: 6350638850664336970}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!224 &7884363682263840962 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3839567849625958024, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}

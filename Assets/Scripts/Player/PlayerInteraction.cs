@@ -26,9 +26,10 @@ public class PlayerInteraction : MonoBehaviour
     [Header("REFERENCES")]
     [SerializeField] private GameObject hand;
 
-    private InteractiveAppliance activeAppliance;
-    private PickableItemBehaviour nearbyItem;
-
+    // State
+    [Header("DEBUG")]
+    [SerializeField] private InteractiveAppliance nearbyAppliance;
+    [SerializeField] private PickableItemBehaviour nearbyItem;
     [SerializeField] private PickableItemBehaviour pickedItem;
 
     private void Awake()
@@ -46,7 +47,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void InteractionCast()
     {
-        activeAppliance = null;
+        nearbyAppliance = null;
         nearbyItem = null;
 
         Vector3 center = transform.position + yOffset;
@@ -68,7 +69,7 @@ public class PlayerInteraction : MonoBehaviour
             // Check if its an appliance
             if (hitObject.TryGetComponent(out InteractiveAppliance appliance))
             {
-                activeAppliance = appliance;
+                nearbyAppliance = appliance;
             }
             // Check if its a pickable item
             else if (hitObject.TryGetComponent(out PickableItemBehaviour item))
@@ -81,8 +82,8 @@ public class PlayerInteraction : MonoBehaviour
     private void CheckInputs()
     {
         // Check Interact
-        if (Keyboard.current[interactKey].wasPressedThisFrame && activeAppliance)
-            activeAppliance.OnInteract();
+        if (Keyboard.current[interactKey].wasPressedThisFrame && nearbyAppliance)
+            nearbyAppliance.OnInteract();
 
         // Check Pick/Drop
         if (Keyboard.current[pickDropKey].wasPressedThisFrame)
@@ -94,13 +95,13 @@ public class PlayerInteraction : MonoBehaviour
         // Place item on appliance
         if (CanPlaceItemOntoAppliance())
         {
-            activeAppliance.PlaceItem(pickedItem);
+            nearbyAppliance.PlaceItem(pickedItem);
             pickedItem = null;
         }
         // Take item from appliance
         else if (CanTakeItemFromAppliance())
         {
-            pickedItem = activeAppliance.TakeItem();
+            pickedItem = nearbyAppliance.TakeItem();
             pickedItem.gameObject.transform.SetParent(hand.transform);
         }
         // Take nearby item
@@ -122,12 +123,12 @@ public class PlayerInteraction : MonoBehaviour
 
     private bool CanPlaceItemOntoAppliance()
     {
-        return activeAppliance && pickedItem && activeAppliance.CanReceive();
+        return nearbyAppliance && pickedItem && nearbyAppliance.CanReceive();
     }
 
     private bool CanTakeItemFromAppliance()
     {
-        return activeAppliance && !pickedItem && !activeAppliance.CanReceive();
+        return nearbyAppliance && !pickedItem && !nearbyAppliance.CanReceive();
     }
 
     private bool CanTakeNearbyItem()

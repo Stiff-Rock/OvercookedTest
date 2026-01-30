@@ -1,39 +1,42 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-//TODO: DESHABILITAR UPDATE SI NO VA A COCINAR
-
+[RequireComponent(typeof(ProgressSliderBehaviour))]
 public class StoveBehaviour : InteractiveAppliance
 {
-    [Header("GUI")]
-    [SerializeField] private Canvas progressBarCanvas;
-    [SerializeField] private Image progressBarSlider;
+    private ProgressSliderBehaviour progressBar;
 
     [SerializeField] private float cookingPower;
 
+    private void Awake()
+    {
+        progressBar = GetComponent<ProgressSliderBehaviour>();
+        enabled = placedIngredient;
+    }
+
     private void Update()
     {
-        if (placedIngredient && !placedIngredient.IsBurnt())
+        if (!placedIngredient) return;
+
+        if (placedIngredient.IsBurnt())
+        {
+            ToggleActiveStove(false);
+        }
+        else
         {
             placedIngredient.Cook(Time.deltaTime);
-
-            if (placedIngredient.IsCooked() && !placedIngredient.IsBurnt())
-                UpdateProgressBar();
+            progressBar.UpdateProgressBar(placedIngredient);
         }
     }
 
-    private void UpdateProgressBar()
+    protected override void OnPlacedItemChanged()
     {
-        if (placedIngredient)
-        {
-            float fillAmount = placedIngredient.GetRequiredCookingTime() / placedIngredient.GetCookedTime();
-            progressBarSlider.fillAmount = fillAmount;
-        }
+        bool isCooking = placedIngredient && !placedIngredient.IsBurnt();
+        ToggleActiveStove(isCooking);
     }
 
-    public override void PlaceItem(PickableItemBehaviour newItem)
+    private void ToggleActiveStove(bool active)
     {
-        base.PlaceItem(newItem);
-        enabled = placedIngredient;
+        enabled = active;
+        progressBar.SetActive(active);
     }
 }

@@ -1,16 +1,14 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(ProgressSliderBehaviour))]
 public class MicrowaveBehaviour : InteractiveAppliance
 {
+    // References
     private Animator animator;
-
-    [Header("GUI")]
-    [SerializeField] private Canvas progressBarCanvas;
-    [SerializeField] private Image progressBarSlider;
+    private ProgressSliderBehaviour progressBar;
 
     [Header("SFX")]
     private AudioSource audioSource;
@@ -21,23 +19,16 @@ public class MicrowaveBehaviour : InteractiveAppliance
 
     private void Awake()
     {
+        progressBar = GetComponent<ProgressSliderBehaviour>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-    }
-
-    protected override void Start()
-    {
-        base.Start();
-        progressBarCanvas.worldCamera = Camera.main;
     }
 
     private void Update()
     {
         if (isCooking && placedIngredient)
         {
-            float required = placedIngredient.IsCooked() ? placedIngredient.GetRequiredBurntTime() : placedIngredient.GetRequiredCookingTime();
-            float fillAmount = placedIngredient.GetCookedTime() / required;
-            progressBarSlider.fillAmount = fillAmount;
+            progressBar.UpdateProgressBar(placedIngredient);
         }
     }
 
@@ -74,7 +65,7 @@ public class MicrowaveBehaviour : InteractiveAppliance
         this.isCooking = isCooking;
         enabled = isCooking;
 
-        progressBarCanvas.gameObject.SetActive(isCooking);
+        progressBar.SetActive(isCooking);
         animator.SetBool("isCooking", isCooking);
         if (audioSource.isPlaying) audioSource.Stop();
         audioSource.PlayOneShot(isCooking ? oven : ding);
@@ -82,7 +73,8 @@ public class MicrowaveBehaviour : InteractiveAppliance
 
     public override void OnInteract()
     {
-        if (!isCooking && placedIngredient && !placedIngredient.IsBurnt()) { 
+        if (!isCooking && placedIngredient && !placedIngredient.IsBurnt())
+        {
             StartCoroutine(Cook());
         }
     }

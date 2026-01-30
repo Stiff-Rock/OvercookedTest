@@ -47,6 +47,11 @@ public class IngredientBehaviour : PickableItemBehaviour
 
     #region Getters and Setters
 
+    public float GetRemainingTime()
+    {
+        return IsCooked() ? GetRequiredBurntTime() : GetRequiredCookingTime();
+    }
+
     public float GetRequiredCookingTime()
     {
         return requiredCookingTime;

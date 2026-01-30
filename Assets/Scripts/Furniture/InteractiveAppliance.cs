@@ -34,6 +34,8 @@ public class InteractiveAppliance : MonoBehaviour
                 placedIngredient = null;
                 placedUtensil = null;
             }
+
+            OnPlacedItemChanged();
         }
     }
 
@@ -63,6 +65,10 @@ public class InteractiveAppliance : MonoBehaviour
 
     // Virtual method to be overridden by child classes
     public virtual void OnInteract()
+    {
+    }
+
+    protected virtual void OnPlacedItemChanged()
     {
     }
 
