@@ -5,7 +5,9 @@ public class StoveBehaviour : InteractiveAppliance
 {
     private ProgressSliderBehaviour progressBar;
 
-    [SerializeField] private float cookingPower;
+    [Header("Cooking Settings")]
+    [Range(0.5f, 2f)]
+    [SerializeField] private float cookingPower = 1.0f;
 
     private void Awake()
     {
@@ -17,13 +19,13 @@ public class StoveBehaviour : InteractiveAppliance
     {
         if (!placedIngredient) return;
 
-        if (placedIngredient.IsBurnt())
+        if (IsFinishedCooking())
         {
             ToggleActiveStove(false);
         }
         else
         {
-            placedIngredient.Cook(Time.deltaTime);
+            placedIngredient.Cook(Time.deltaTime * cookingPower);
             progressBar.UpdateProgressBar(placedIngredient);
         }
     }
@@ -38,5 +40,10 @@ public class StoveBehaviour : InteractiveAppliance
     {
         enabled = active;
         progressBar.SetActive(active);
+    }
+
+    private bool IsFinishedCooking()
+    {
+        return cookingPower > 0.7 && placedIngredient.IsBurnt() || cookingPower <= 0.7 && placedIngredient.IsCooked();
     }
 }

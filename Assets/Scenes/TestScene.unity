@@ -565,6 +565,10 @@ PrefabInstance:
       propertyPath: _placedItem
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7608545909556118406, guid: a820ee6705292174fa3d50383972910f, type: 3}
+      propertyPath: cookingPower
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
