@@ -61,13 +61,20 @@ public class PlayerInteraction : MonoBehaviour
             interactionLayer
         );
 
-        if (hit)
+        if (hit && hitInfo.collider.attachedRigidbody != null)
         {
-            // Check if the collided object is an CookingStationBehaviour
-            activeAppliance = hitInfo.collider.gameObject.GetComponent<InteractiveAppliance>();
+            GameObject hitObject = hitInfo.collider.attachedRigidbody.gameObject;
 
-            if (!activeAppliance)
-                nearbyItem = hitInfo.collider.gameObject.GetComponent<PickableItemBehaviour>();
+            // Check if its an appliance
+            if (hitObject.TryGetComponent(out InteractiveAppliance appliance))
+            {
+                activeAppliance = appliance;
+            }
+            // Check if its a pickable item
+            else if (hitObject.TryGetComponent(out PickableItemBehaviour item))
+            {
+                nearbyItem = item;
+            }
         }
     }
 
