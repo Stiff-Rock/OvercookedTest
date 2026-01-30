@@ -1,9 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
     // References
+    private CharacterController characterController;
     private Animator animator;
     private static readonly int isWalkingHash = Animator.StringToHash("IsWalking");
 
@@ -23,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        characterController = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -60,12 +64,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (!isWalking) return;
 
-        // Move the player
         Vector3 moveDirectionNormalized = moveDirection.normalized;
-        transform.position += movementSpeed * Time.deltaTime * moveDirectionNormalized;
 
         // Rotate to movement direction
         Quaternion rotationTarget = Quaternion.LookRotation(moveDirectionNormalized);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationTarget, rotationSpeed * Time.deltaTime);
+
+        // Move the player
+        characterController.SimpleMove(moveDirectionNormalized * movementSpeed);
     }
 }
