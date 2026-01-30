@@ -181,9 +181,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4214567594950780707, guid: a528e8bce03b5344bb9b7f687b3e5a82, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a528e8bce03b5344bb9b7f687b3e5a82, type: 3}
       propertyPath: m_Name
       value: Crate
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a528e8bce03b5344bb9b7f687b3e5a82, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2223639932434330405, guid: a528e8bce03b5344bb9b7f687b3e5a82, type: 3}
       propertyPath: m_PlayAutomatically

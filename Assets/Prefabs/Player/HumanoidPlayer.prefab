@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   movementSpeed: 5
-  rotationSpeed: 900
+  rotationSpeed: 1200
   forwardKey: 37
   leftKey: 15
   backwardKey: 33
@@ -168,8 +168,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
   interactKey: 19
   pickDropKey: 31
-  initeracionArea: {x: 1.53, y: 0.9, z: 0.39}
-  interactionRaycastHeight: 0
+  interactionLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  initeractionArea: {x: 0.5, y: 0.5, z: 1}
+  heightOffset: -0.8
   playerColor: {r: 1, g: 0, b: 0, a: 0}
   hand: {fileID: 1622095555161474932}
   pickedItem: {fileID: 0}

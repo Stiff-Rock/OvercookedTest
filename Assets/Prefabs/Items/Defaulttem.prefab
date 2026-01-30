@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 188323387314861338}
   - component: {fileID: 2892197801149243469}
   - component: {fileID: 8621474153571938011}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 1117503342546564239}
   - component: {fileID: 8720304453398813611}
   - component: {fileID: 2328871098115649445}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Defaulttem
   m_TagString: Untagged
   m_Icon: {fileID: 0}

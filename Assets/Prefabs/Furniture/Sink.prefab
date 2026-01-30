@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1363063860924761085}
   - component: {fileID: 3299347189861829650}
   - component: {fileID: 1045204166422674753}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3732665489958919450}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlaceArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,9 +346,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4117660746854594329, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838107333604099744, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7621168116940883807, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7621168116940883807, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

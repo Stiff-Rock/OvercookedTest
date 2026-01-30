@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1567602156669785183}
   - component: {fileID: 1280998447059948400}
   - component: {fileID: 7237643803634130986}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 8859913710186642078}
   - component: {fileID: 7735278198215017297}
   - component: {fileID: 5344059636896148462}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Countertop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -536,9 +536,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4117660746854594329, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838107333604099744, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7621168116940883807, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7621168116940883807, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
