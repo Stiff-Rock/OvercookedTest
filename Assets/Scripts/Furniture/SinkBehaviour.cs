@@ -1,9 +1,9 @@
 using UnityEngine;
 
-// TODO: CuttingBoardBehaviour
+// TODO: SinkBehaviour
 
 [RequireComponent(typeof(ProgressSliderBehaviour))]
-public class CuttingBoardBehaviour : InteractiveAppliance
+public class SinkBehaviour : InteractiveAppliance
 {
     private ProgressSliderBehaviour progressBar;
 

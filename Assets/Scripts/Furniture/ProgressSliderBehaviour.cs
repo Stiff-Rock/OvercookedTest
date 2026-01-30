@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// TODO: TODOS LOS CANVAS DEBERIAN ESTAR ORIENTADOS A LA CAMARA PRINCIPAL
 public class ProgressSliderBehaviour : MonoBehaviour
 {
     [Header("GUI")]

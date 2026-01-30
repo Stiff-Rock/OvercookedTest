@@ -237,7 +237,8 @@ PrefabInstance:
       propertyPath: applianceName
       value: Sink
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7875018348073005786, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7909902342630956993, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
     - {fileID: 7596002972758335588, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
@@ -251,13 +252,53 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5857561505183304859, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4935280928188033337}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4305021953342692540, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 915487075810652201}
+    - targetCorrespondingSourceObject: {fileID: 4305021953342692540, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8273847085264044247}
   m_SourcePrefab: {fileID: 100100000, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
 --- !u!4 &335821284591042510 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5857561505183304859, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
   m_PrefabInstance: {fileID: 6188841485969158997}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7952701783084347369 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4305021953342692540, guid: 05025a60f4fb98e4e9ba35be46c40274, type: 3}
+  m_PrefabInstance: {fileID: 6188841485969158997}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &915487075810652201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7952701783084347369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e416fd8578deb347971bb5e6ede0dd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProgressSliderBehaviour
+  progressBarCanvas: {fileID: 2944145627978810321}
+  progressBarSlider: {fileID: 8162770225012356108}
+--- !u!114 &8273847085264044247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7952701783084347369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2011f3295db1e864a9b51217535423c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SinkBehaviour
+  applianceName: Sink
+  placeArea: {fileID: 7388168642710486087}
+  _placedItem: {fileID: 0}
 --- !u!1001 &7037277090066819739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -367,8 +408,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
+--- !u!223 &2944145627978810321 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 5292533184395684170, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
+  m_PrefabInstance: {fileID: 7037277090066819739}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6116324420863286291 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3839567849625958024, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
   m_PrefabInstance: {fileID: 7037277090066819739}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8162770225012356108 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1220073623483735703, guid: 9287a0bd6c2652c4fbeedda59f371176, type: 3}
+  m_PrefabInstance: {fileID: 7037277090066819739}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image

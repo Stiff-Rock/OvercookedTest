@@ -213,9 +213,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IngredientBehaviour
   physicsCollider: {fileID: 8308636253248488214}
   triggerCollider: {fileID: 5223307981810158105}
-  itemName: Steak
   cookedColor: {r: 0.3301887, g: 0.126157, b: 0.126157, a: 0}
   burntColor: {r: 0.1792453, g: 0.13781595, b: 0.13781595, a: 0}
+  ingredientType: 2
   requiredCookingTime: 3
   requiredBurnTime: 4
   cookedTime: 0

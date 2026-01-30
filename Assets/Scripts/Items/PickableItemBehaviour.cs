@@ -8,8 +8,6 @@ public class PickableItemBehaviour : MonoBehaviour
     [SerializeField] private Collider triggerCollider;
     private Rigidbody rb;
 
-    [SerializeField] protected string itemName;
-
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -56,7 +54,7 @@ public class PickableItemBehaviour : MonoBehaviour
         if (newParentTransformExists) UpdateTransform();
     }
 
-    #region Getters and Setters
+    #region Helper Methods
 
     public bool IsIngredient()
     {
