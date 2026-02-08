@@ -175,7 +175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8608467126845538537, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
       propertyPath: m_Name
-      value: Steak
+      value: Meatballs
       objectReference: {fileID: 0}
     - target: {fileID: 8720304453398813611, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
       propertyPath: m_Constraints
@@ -183,49 +183,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2328871098115649445, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
+    - {fileID: 1117503342546564239, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
+    - {fileID: 8720304453398813611, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2195127009913139844, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8453657722525615751, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 834826645602885373}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8608467126845538537, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4592298258785157965}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
---- !u!1 &3497514120743026303 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8608467126845538537, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
-  m_PrefabInstance: {fileID: 5187796790749789846}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4592298258785157965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3497514120743026303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01af765e458782847853de9aaf2c144a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::IngredientBehaviour
-  physicsCollider: {fileID: 8308636253248488214}
-  triggerCollider: {fileID: 5223307981810158105}
-  cookedColor: {r: 0.3301887, g: 0.126157, b: 0.126157, a: 0}
-  burntColor: {r: 0.1792453, g: 0.13781595, b: 0.13781595, a: 0}
-  ingredientType: 2
-  requiredCookingTime: 3
-  requiredBurnTime: 4
-  cookedTime: 0
 --- !u!4 &3652328421329860625 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8453657722525615751, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
-  m_PrefabInstance: {fileID: 5187796790749789846}
-  m_PrefabAsset: {fileID: 0}
---- !u!135 &5223307981810158105 stripped
-SphereCollider:
-  m_CorrespondingSourceObject: {fileID: 1117503342546564239, guid: 62b952825bfde9c409e1d3fbd765d3b8, type: 3}
   m_PrefabInstance: {fileID: 5187796790749789846}
   m_PrefabAsset: {fileID: 0}
