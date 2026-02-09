@@ -4,6 +4,10 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(MeshRenderer))]
 public class PlayerInteraction : MonoBehaviour
 {
+    // References
+    [Header("REFERENCES")]
+    [SerializeField] private GameObject hand;
+
     // Controls
     [Header("CONTROLS")]
     [SerializeField] private Key interactKey;
@@ -18,16 +22,8 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float heightOffset;
     private Vector3 yOffset;
 
-    // Values
-    [Header("VALUES")]
-    [SerializeField] private Color playerColor;
-
-    // References
-    [Header("REFERENCES")]
-    [SerializeField] private GameObject hand;
-
     // State
-    [Header("DEBUG")]
+    [Header("STATE")]
     [SerializeField] private InteractiveAppliance nearbyAppliance;
     [SerializeField] private PickableItemBehaviour nearbyItem;
 
@@ -35,7 +31,6 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Awake()
     {
-        GetComponent<MeshRenderer>().material.color = playerColor;
         yOffset = Vector3.up * heightOffset;
         halfExtents = interactionBox / 2;
     }
@@ -118,12 +113,11 @@ public class PlayerInteraction : MonoBehaviour
         }
         else return;
 
-        if (utensil.TryAddIngredient(ingredient.IngredientType))
+        if (utensil.TryAddIngredient(ingredient))
         {
             GameObject ingredientObj = isIngredientOnAppliance
                 ? nearbyAppliance.TakeItem().gameObject
                 : DropItem().gameObject;
-            Destroy(ingredientObj);
         }
     }
 

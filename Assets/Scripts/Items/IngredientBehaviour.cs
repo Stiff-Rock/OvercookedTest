@@ -6,19 +6,21 @@ public class IngredientBehaviour : PickableItemBehaviour
     private Renderer objRenderer;
 
     // Cooking parameters
-    [Header("COOKING PARAMTERS")]
+    [field: Header("Type")]
     [field: SerializeField] public IngredientType IngredientType { get; private set; }
+
+    [Header("Attributes")]
     [SerializeField] private float requiredCookingTime = 2.0f;
     [SerializeField] private float requiredBurnTime = 3.0f;
     [SerializeField] private float cookedTime = 0f;
+
+    [Header("Visual")]
     [SerializeField] private Color cookedColor;
     [SerializeField] private Color burntColor;
 
     // Flags
     private bool isCooked;
     private bool isBurnt;
-
-
 
     protected override void Awake()
     {

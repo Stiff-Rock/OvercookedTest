@@ -1,18 +1,20 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[Serializable]
 public class Recipe
 {
     [Header("Type")]
-    private DishType dishType;
+    [SerializeField] private DishType dishType;
 
     [Header("Ingredients")]
-    private readonly List<IngredientType> baseIngredients;
-    private readonly List<IngredientType> extraIngredients;
+    [SerializeField] private List<IngredientType> baseIngredients;
+    [SerializeField] private List<IngredientType> extraIngredients;
 
     // Cache
-    private List<DishType> possibleRecipes;
+    [SerializeField] private List<DishType> possibleRecipes;
     private RecipeScriptableObject matchedRecipe;
 
     public Recipe()
@@ -22,40 +24,50 @@ public class Recipe
         extraIngredients = new();
     }
 
-    // Add methods to add ingredients, to compare two recipes, 
-    // and to check if the new ingredient is compatible and what recipe it makes
-    // also in that process keep stored the possible outcomes so no need to recalculate them each time
-    public bool TryAddIngredient(IngredientType ingredient)
+    public bool TryAddIngredient(IngredientType newIngredient)
     {
-        // If the recipe is matched, check for extras
-        if (matchedRecipe)
-        {
-            if (extraIngredients.Contains(ingredient)) return false;
+        if (AlreadyContainsIngredient(newIngredient)) return false;
 
-            bool compatibleExtra = matchedRecipe.extraIngredients.Contains(ingredient);
+        // If the recipe is already matched and finished, check for the extra ingredients
+        if (RecipeIsFinished())
+        {
+            bool compatibleExtra = matchedRecipe.extraIngredients.Contains(newIngredient);
 
             if (compatibleExtra)
-                extraIngredients.Add(ingredient);
+                extraIngredients.Add(newIngredient);
 
             return compatibleExtra;
         }
 
-        // Unknown recipe
-        // If it's the first ingredient accept it and filter possible recipes
-        if (possibleRecipes == null)
+        possibleRecipes ??= new(GameController.Instance.RecipesDict.Keys);
+
+        // Check if the new ingredient is present in any of the possible recipes
+        bool ingredientAccepted = possibleRecipes.Any(dish =>
         {
-            possibleRecipes = new(GameController.Instance.RecipesDict.Keys);
-            baseIngredients.Add(ingredient);
-        }
-        // Check if the new ingredient is compatible with any of the possible recipes
-        else
+            RecipeScriptableObject recipe = GameController.Instance.RecipesDict[dish];
+            return recipe.requiredIngredients.Contains(newIngredient);
+        });
+
+        if (ingredientAccepted)
         {
-
+            baseIngredients.Add(newIngredient);
+            FilterPossibleRecipes();
         }
 
-        FilterPossibleRecipes();
+        return ingredientAccepted;
+    }
 
-        return false; // TODO: BORRAR
+    public bool Matches(Recipe recipe)
+    {
+        return recipe.dishType == dishType
+            && baseIngredients.All(i => recipe.baseIngredients.Contains(i))
+            && extraIngredients.All(i => recipe.extraIngredients.Contains(i));
+    }
+
+    #region Helper Methods
+    private bool AlreadyContainsIngredient(IngredientType newIngredient)
+    {
+        return baseIngredients.Contains(newIngredient) || extraIngredients.Contains(newIngredient);
     }
 
     // Filter recipes based on the current base ingredients
@@ -84,10 +96,10 @@ public class Recipe
         return baseIngredients.All(i => recipe.requiredIngredients.Contains(i));
     }
 
-    /* public bool Matches(RecipeScriptableObject recipe)
-     {
-         return recipe.dishType == dishType
-             && recipe.baseIngredients.SetEquals(baseIngredients)
-             && recipe.extraIngredients.SetEquals(extraIngredients);
-     }*/
+    private bool RecipeIsFinished()
+    {
+        return matchedRecipe && matchedRecipe.requiredIngredients.Count() == baseIngredients.Count;
+    }
+
+    #endregion
 }

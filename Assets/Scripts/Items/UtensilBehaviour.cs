@@ -4,7 +4,9 @@
 public class UtensilBehaviour : PickableItemBehaviour
 {
     [SerializeField] private UtensilType utensilType;
-    private Recipe currentRecipe;
+    [SerializeField] private Recipe currentRecipe;
+
+    private float stackHeightPos = 0f;
 
     protected override void Awake()
     {
@@ -37,8 +39,22 @@ public class UtensilBehaviour : PickableItemBehaviour
         currentRecipe = new Recipe();
     }
 
-    public bool TryAddIngredient(IngredientType ingredient)
+    public bool TryAddIngredient(IngredientBehaviour ingredientItem)
     {
-        return currentRecipe.TryAddIngredient(ingredient);
+        bool added = currentRecipe.TryAddIngredient(ingredientItem.IngredientType);
+
+        if (added)
+        {
+            ingredientItem.gameObject.transform.SetParent(transform, false);
+
+            Renderer meshRenderer = ingredientItem.GetComponentInChildren<Renderer>();
+
+            float realHeight = meshRenderer.bounds.size.y;
+            stackHeightPos += realHeight / 2f;
+
+            ingredientItem.gameObject.transform.position += Vector3.up * stackHeightPos;
+        }
+
+        return added;
     }
 }

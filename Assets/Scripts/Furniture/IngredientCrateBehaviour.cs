@@ -20,6 +20,6 @@ public class IngredientCrate : InteractiveAppliance
 
     public override bool HasItem()
     {
-        return false;
+        return true;
     }
 }
