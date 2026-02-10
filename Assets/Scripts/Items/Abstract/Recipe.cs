@@ -24,6 +24,13 @@ public class Recipe
         extraIngredients = new();
     }
 
+    public Recipe(DishType dishType, IngredientType[] baseIngredients)
+    {
+        this.dishType = dishType;
+        this.baseIngredients = new(baseIngredients);
+        extraIngredients = new();
+    }
+
     public bool TryAddIngredient(IngredientType newIngredient)
     {
         if (AlreadyContainsIngredient(newIngredient)) return false;
@@ -99,6 +106,16 @@ public class Recipe
     private bool RecipeIsFinished()
     {
         return matchedRecipe && matchedRecipe.requiredIngredients.Count() == baseIngredients.Count;
+    }
+
+    public bool TryAddExtra(IngredientType newExtra)
+    {
+        if (extraIngredients.Contains(newExtra))
+            return false;
+
+        extraIngredients.Add(newExtra);
+
+        return true;
     }
 
     #endregion

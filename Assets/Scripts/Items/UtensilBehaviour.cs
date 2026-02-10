@@ -37,6 +37,7 @@ public class UtensilBehaviour : PickableItemBehaviour
     public void EmptyUtensil()
     {
         currentRecipe = new Recipe();
+        DeleteChildren();
     }
 
     public bool TryAddIngredient(IngredientBehaviour ingredientItem)
@@ -45,16 +46,33 @@ public class UtensilBehaviour : PickableItemBehaviour
 
         if (added)
         {
+            // TODO: En vez de esto, haz que tengan un transform que sea "TOP" para stackear mas fácil
             ingredientItem.gameObject.transform.SetParent(transform, false);
 
             Renderer meshRenderer = ingredientItem.GetComponentInChildren<Renderer>();
+            float itemHeight = meshRenderer.bounds.size.y;
 
-            float realHeight = meshRenderer.bounds.size.y;
-            stackHeightPos += realHeight / 2f;
+            ingredientItem.gameObject.transform.localPosition = new Vector3(
+                0,
+                stackHeightPos + (itemHeight / 2f),
+                0
+            );
 
-            ingredientItem.gameObject.transform.position += Vector3.up * stackHeightPos;
+            stackHeightPos += itemHeight;
         }
 
         return added;
     }
+
+    #region Helper Methods
+
+    private void DeleteChildren()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    #endregion
 }

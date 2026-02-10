@@ -13,6 +13,10 @@ public class TrashBehaviour : InteractiveAppliance
     public override void PlaceItem(PickableItemBehaviour dropped)
     {
         anim.SetTrigger(TrashAnimationTriggerKey);
-        Destroy(dropped.gameObject);
+
+        if (dropped is UtensilBehaviour utensil)
+            utensil.EmptyUtensil();
+        else
+            Destroy(dropped.gameObject);
     }
 }
