@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ec37967a6dc8094a93b6f805a47af99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IngredientCrate
-  applianceName: IngredientCrate Variant
+  applianceName: IngredientCrate
   placeArea: {fileID: 5142556370466638739}
   _placedItem: {fileID: 0}
   ingredient: {fileID: 0}

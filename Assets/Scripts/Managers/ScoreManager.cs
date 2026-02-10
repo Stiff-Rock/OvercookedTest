@@ -1,10 +1,20 @@
+using TMPro;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
 
-    [SerializeField] private int score;
+    [Header("References")]
+    [SerializeField] private TextMeshProUGUI scoreText;
+
+    [Header("Values")]
+    [SerializeField] private int currentScore;
+
+    [Header("Score Settings")]
+    [SerializeField] private int ingredientScoreValue = 50;
+    [SerializeField] private int timeScoreValue = 25;
+    [SerializeField] private int expireScorePenalty = 100;
 
     private void Awake()
     {
@@ -20,22 +30,29 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    public void UpdateScore(int amount)
+    public void UpdateScore(KitchenOrder order)
     {
-        score += amount;
+        if (order.IsCompleted())
+        {
+            int orderScore = order.Recipe.GetTotalIngredients() * ingredientScoreValue;
+            int lifespanScoreBonus = (int)order.Lifespan * timeScoreValue;
+            int totalScore = orderScore + lifespanScoreBonus;
+            UpdateScoreValue(totalScore);
+        }
+        else
+        {
+            PenalizeScore();
+        }
     }
 
-    #region Getters and Setters
-
-    public void SetScore(int newScore)
+    public void PenalizeScore()
     {
-        score = newScore;
+        UpdateScoreValue(-expireScorePenalty);
     }
 
-    public int GetScore()
+    private void UpdateScoreValue(int change)
     {
-        return score;
+        currentScore += change;
+        scoreText.SetText($"{currentScore}");
     }
-
-    #endregion
 }

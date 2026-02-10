@@ -44,10 +44,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb49e7f07a5727945a8858330e9d7c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  <Recipes>k__BackingField:
-  - {fileID: 11400000, guid: 1bccf5b93b36f164ebfdbc33c06bb256, type: 2}
-  - {fileID: 11400000, guid: 6efd7dd014b99f34fa673daafdfcdbdd, type: 2}
-  - {fileID: 11400000, guid: 372500446f54f864980c8bb1eb37c055, type: 2}
-  - {fileID: 11400000, guid: 7517013dac5dd0b408abdb6e656bbc42, type: 2}
-  - {fileID: 11400000, guid: 1b3084f09791d934d820e1fa801840e8, type: 2}
-  - {fileID: 11400000, guid: b1c1f10b00255c7438e20d9677bd7d79, type: 2}
+  orderingRate: 5
+  onCreateOrder:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: KitchenOrdersManager, Assembly-CSharp
+        m_MethodName: CreateOrder
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

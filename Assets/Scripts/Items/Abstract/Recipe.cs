@@ -7,7 +7,7 @@ using UnityEngine;
 public class Recipe
 {
     [Header("Type")]
-    [SerializeField] private DishType dishType;
+    [SerializeField] public DishType DishType { get; private set; }
 
     [Header("Ingredients")]
     [SerializeField] private List<IngredientType> baseIngredients;
@@ -19,14 +19,14 @@ public class Recipe
 
     public Recipe()
     {
-        dishType = DishType.None;
+        DishType = DishType.None;
         baseIngredients = new();
         extraIngredients = new();
     }
 
     public Recipe(DishType dishType, IngredientType[] baseIngredients)
     {
-        this.dishType = dishType;
+        this.DishType = dishType;
         this.baseIngredients = new(baseIngredients);
         extraIngredients = new();
     }
@@ -38,7 +38,7 @@ public class Recipe
         // If the recipe is already matched and finished, check for the extra ingredients
         if (RecipeIsFinished())
         {
-            bool compatibleExtra = matchedRecipe.extraIngredients.Contains(newIngredient);
+            bool compatibleExtra = matchedRecipe.ExtraIngredients.Contains(newIngredient);
 
             if (compatibleExtra)
                 extraIngredients.Add(newIngredient);
@@ -46,13 +46,13 @@ public class Recipe
             return compatibleExtra;
         }
 
-        possibleRecipes ??= new(GameController.Instance.RecipesDict.Keys);
+        possibleRecipes ??= new(RecipesManager.Instance.DishToRecipe.Keys);
 
         // Check if the new ingredient is present in any of the possible recipes
         bool ingredientAccepted = possibleRecipes.Any(dish =>
         {
-            RecipeScriptableObject recipe = GameController.Instance.RecipesDict[dish];
-            return recipe.requiredIngredients.Contains(newIngredient);
+            RecipeScriptableObject recipe = RecipesManager.Instance.DishToRecipe[dish];
+            return recipe.RequiredIngredients.Contains(newIngredient);
         });
 
         if (ingredientAccepted)
@@ -66,7 +66,7 @@ public class Recipe
 
     public bool Matches(Recipe recipe)
     {
-        return recipe.dishType == dishType
+        return recipe.DishType == DishType
             && baseIngredients.All(i => recipe.baseIngredients.Contains(i))
             && extraIngredients.All(i => recipe.extraIngredients.Contains(i));
     }
@@ -84,15 +84,15 @@ public class Recipe
 
         if (possibleRecipes.Count == 1)
         {
-            dishType = possibleRecipes.First();
-            matchedRecipe = GameController.Instance.RecipesDict[dishType];
+            DishType = possibleRecipes.First();
+            matchedRecipe = RecipesManager.Instance.DishToRecipe[DishType];
         }
     }
 
     // Helper method to check a dish is compatible with the current base ingredients
     private bool IsCompatibleDish(DishType dish)
     {
-        RecipeScriptableObject recipe = GameController.Instance.RecipesDict[dish];
+        RecipeScriptableObject recipe = RecipesManager.Instance.DishToRecipe[dish];
 
         if (recipe == null)
         {
@@ -100,12 +100,12 @@ public class Recipe
             return false;
         }
 
-        return baseIngredients.All(i => recipe.requiredIngredients.Contains(i));
+        return baseIngredients.All(i => recipe.RequiredIngredients.Contains(i));
     }
 
     private bool RecipeIsFinished()
     {
-        return matchedRecipe && matchedRecipe.requiredIngredients.Count() == baseIngredients.Count;
+        return matchedRecipe && matchedRecipe.RequiredIngredients.Count() == baseIngredients.Count;
     }
 
     public bool TryAddExtra(IngredientType newExtra)
@@ -116,6 +116,11 @@ public class Recipe
         extraIngredients.Add(newExtra);
 
         return true;
+    }
+
+    public int GetTotalIngredients()
+    {
+        return baseIngredients.Count + extraIngredients.Count;
     }
 
     #endregion

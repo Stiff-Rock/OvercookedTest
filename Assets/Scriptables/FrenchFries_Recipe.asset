@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf5fc7ed74ba624fa69214645667268, type: 3}
   m_Name: FrenchFries_Recipe
   m_EditorClassIdentifier: Assembly-CSharp::Recipes
-  dishType: 1
-  requiredIngredients: 08000000
-  extraIngredients: 01000000
-  resultPrefab: {fileID: 0}
+  <DishType>k__BackingField: 1
+  <RequiredIngredients>k__BackingField: 08000000
+  <ExtraIngredients>k__BackingField: 01000000
+  <ResultPrefab>k__BackingField: {fileID: 0}

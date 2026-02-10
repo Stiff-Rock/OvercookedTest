@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf5fc7ed74ba624fa69214645667268, type: 3}
   m_Name: Meatballs_Recipe
   m_EditorClassIdentifier: Assembly-CSharp::Recipes
-  dishType: 3
-  requiredIngredients: 0200000001000000
-  extraIngredients: 00000000
-  resultPrefab: {fileID: 0}
+  <DishType>k__BackingField: 3
+  <RequiredIngredients>k__BackingField: 0200000008000000
+  <ExtraIngredients>k__BackingField: 
+  <ResultPrefab>k__BackingField: {fileID: 0}
