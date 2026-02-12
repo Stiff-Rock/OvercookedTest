@@ -13,9 +13,9 @@ public class ProgressSliderBehaviour : MonoBehaviour
         progressBarCanvas.worldCamera = Camera.main;
     }
 
-    public void UpdateProgressBar(IngredientBehaviour placedIngredient)
+    public void UpdateProgressBar(float progress)
     {
-        progressBarSlider.fillAmount = placedIngredient.GetCookedTime() / placedIngredient.GetRemainingTime();
+        progressBarSlider.fillAmount = progress;
     }
 
     public void SetActive(bool active)

@@ -75,6 +75,8 @@ public class KitchenOrdersManager : MonoBehaviour
             // Check if the served dish matches any placed orders
             if (order.Recipe.Matches(recipe))
             {
+                Debug.Log($"order.Recipe: {order.Recipe} || given.Recipe{recipe}");
+
                 order.SetIsCompleted(true);
                 ScoreManager.Instance.UpdateScore(order);
                 RemoveOrder(order);

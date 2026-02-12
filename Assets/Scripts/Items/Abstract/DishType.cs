@@ -1,6 +1,6 @@
 ﻿public enum DishType
 {
-    None,
+    Undetermined,
     // TODO: TO IMPLEMENT DishType
     FrenchFries,
     Hamburger,

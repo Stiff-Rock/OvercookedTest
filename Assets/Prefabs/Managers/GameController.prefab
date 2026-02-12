@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb49e7f07a5727945a8858330e9d7c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  orderingRate: 5
+  orderingRate: 10
+  orderTimer: 0
   onCreateOrder:
     m_PersistentCalls:
       m_Calls:

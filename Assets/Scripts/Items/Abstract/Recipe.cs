@@ -19,7 +19,7 @@ public class Recipe
 
     public Recipe()
     {
-        DishType = DishType.None;
+        DishType = DishType.Undetermined;
         baseIngredients = new();
         extraIngredients = new();
     }
@@ -66,12 +66,19 @@ public class Recipe
 
     public bool Matches(Recipe recipe)
     {
-        return recipe.DishType == DishType
-            && baseIngredients.All(i => recipe.baseIngredients.Contains(i))
-            && extraIngredients.All(i => recipe.extraIngredients.Contains(i));
+        if (recipe.DishType != DishType) return false;
+
+        bool baseMatch = new HashSet<IngredientType>(baseIngredients)
+                         .SetEquals(recipe.baseIngredients);
+
+        bool extraMatch = new HashSet<IngredientType>(extraIngredients)
+                          .SetEquals(recipe.extraIngredients);
+
+        return baseMatch && extraMatch;
     }
 
     #region Helper Methods
+
     private bool AlreadyContainsIngredient(IngredientType newIngredient)
     {
         return baseIngredients.Contains(newIngredient) || extraIngredients.Contains(newIngredient);
@@ -124,4 +131,11 @@ public class Recipe
     }
 
     #endregion
+
+    public override string ToString()
+    {
+        return $"DishType: {DishType}" +
+            $" | Base Ingredients {string.Join(", ", baseIngredients)}" +
+            $" | Extra Ingredients {string.Join(", ", extraIngredients)}";
+    }
 }

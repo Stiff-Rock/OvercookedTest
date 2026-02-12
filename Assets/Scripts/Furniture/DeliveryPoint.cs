@@ -2,8 +2,24 @@ using UnityEngine;
 
 public class DeliveryPoint : InteractiveAppliance
 {
-    public override void PlaceItem(PickableItemBehaviour dropped)
+    private KitchenOrdersManager ordersManager;
+
+    protected override void Start()
     {
-        // TODO: THIS IS A SPECIAL CASE
+        base.Start();
+
+        ordersManager = GameObject
+            .FindWithTag("KitchenOrdersManager")
+            .GetComponent<KitchenOrdersManager>();
+    }
+
+    public void ServeOrder(Recipe recipe)
+    {
+        ordersManager.ServeDish(recipe);
+    }
+
+    public override bool HasItem()
+    {
+        return true;
     }
 }

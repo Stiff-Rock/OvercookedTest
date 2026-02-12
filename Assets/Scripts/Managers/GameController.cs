@@ -4,7 +4,7 @@ using UnityEngine.Events;
 public class GameController : MonoBehaviour
 {
     [Header("Game Settings")]
-    [SerializeField] private float orderingRate = 5.0f;
+    [SerializeField] private float orderingRate = 10.0f;
     [SerializeField] private float orderTimer;
 
     // Events

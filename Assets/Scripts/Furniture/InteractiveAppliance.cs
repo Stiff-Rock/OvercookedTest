@@ -7,6 +7,8 @@ public class InteractiveAppliance : MonoBehaviour
     [SerializeField] protected GameObject placeArea;
     [SerializeField] private PickableItemBehaviour _placedItem;
 
+    protected PlayerController currentPlayer;
+
     public PickableItemBehaviour PlacedItem
     {
         get { return _placedItem; }
@@ -64,8 +66,9 @@ public class InteractiveAppliance : MonoBehaviour
     }
 
     // Virtual method to be overridden by child classes
-    public virtual void OnInteract()
+    public virtual void OnInteract(PlayerController playerController)
     {
+        currentPlayer = playerController;
     }
 
     protected virtual void OnPlacedItemChanged()

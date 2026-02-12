@@ -28,7 +28,7 @@ public class MicrowaveBehaviour : InteractiveAppliance
     {
         if (isCooking && placedIngredient)
         {
-            progressBar.UpdateProgressBar(placedIngredient);
+            progressBar.UpdateProgressBar(placedIngredient.GetCookProgress());
         }
     }
 
@@ -39,17 +39,17 @@ public class MicrowaveBehaviour : InteractiveAppliance
         {
             ToggleCookAnimation(true);
 
-            if (!placedIngredient.IsCooked())
+            if (!placedIngredient.IsCooked)
             {
-                while (!placedIngredient.IsCooked())
+                while (!placedIngredient.IsCooked)
                 {
                     placedIngredient.Cook(Time.deltaTime);
                     yield return null;
                 }
             }
-            else if (!placedIngredient.IsBurnt())
+            else if (!placedIngredient.IsBurnt)
             {
-                while (!placedIngredient.IsBurnt())
+                while (!placedIngredient.IsBurnt)
                 {
                     placedIngredient.Cook(Time.deltaTime);
                     yield return null;
@@ -71,11 +71,11 @@ public class MicrowaveBehaviour : InteractiveAppliance
         audioSource.PlayOneShot(isCooking ? oven : ding);
     }
 
-    public override void OnInteract()
+    public override void OnInteract(PlayerController playerController)
     {
-        if (!isCooking && placedIngredient && !placedIngredient.IsBurnt())
-        {
+        base.OnInteract(playerController);
+
+        if (!isCooking && placedIngredient && !placedIngredient.IsBurnt)
             StartCoroutine(Cook());
-        }
     }
 }

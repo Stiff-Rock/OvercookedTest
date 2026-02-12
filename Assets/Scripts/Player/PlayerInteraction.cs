@@ -7,6 +7,7 @@ public class PlayerInteraction : MonoBehaviour
     // References
     [Header("REFERENCES")]
     [SerializeField] private GameObject hand;
+    private PlayerController playerController;
 
     // Controls
     [Header("CONTROLS")]
@@ -31,6 +32,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Awake()
     {
+        playerController = GetComponent<PlayerController>();
         yOffset = Vector3.up * heightOffset;
         halfExtents = interactionBox / 2;
     }
@@ -82,7 +84,7 @@ public class PlayerInteraction : MonoBehaviour
             if (pickedItem && nearbyAppliance.HasItem())
                 TryMerge();
             else if (!pickedItem)
-                nearbyAppliance.OnInteract();
+                nearbyAppliance.OnInteract(playerController);
 
         // Check Pick/Drop
         if (Keyboard.current[pickDropKey].wasPressedThisFrame)
@@ -113,20 +115,33 @@ public class PlayerInteraction : MonoBehaviour
         }
         else return;
 
-        if (utensil.TryAddIngredient(ingredient))
+        if (!utensil.TryAddIngredient(ingredient)) return;
+
+        if (isIngredientOnAppliance)
         {
-            GameObject ingredientObj = isIngredientOnAppliance
-                ? nearbyAppliance.TakeItem().gameObject
-                : DropItem().gameObject;
+            nearbyAppliance.TakeItem();
+        }
+        else
+        {
+            DropItem();
         }
     }
 
     private void PickOrDrop()
     {
+        // Deliver dish to delivery point
+        if (CanDeliverDish() && NearbyApplianceIsDeilveryPoint(out DeliveryPoint deliveryPoint))
+        {
+            deliveryPoint.ServeOrder(((UtensilBehaviour)pickedItem).CurrentRecipe);
+            ((UtensilBehaviour)pickedItem).EmptyUtensil();
+        }
         // Place item on appliance
-        if (CanPlaceItemOntoAppliance())
+        else if (CanPlaceItemOntoAppliance())
         {
             nearbyAppliance.PlaceItem(pickedItem);
+
+            // BUG: Al tirar el contenido de un plato, se quita el plato de la mano del jugador
+
             DropItem();
         }
         // Take item from appliance
@@ -176,7 +191,21 @@ public class PlayerInteraction : MonoBehaviour
 
     private bool CanDropHeldItem()
     {
-        return pickedItem;
+        return !nearbyAppliance && pickedItem;
+    }
+
+    private bool CanDeliverDish()
+    {
+        return pickedItem
+            && pickedItem is UtensilBehaviour u
+            && u.UtensilType == UtensilType.Plate
+            && u.CurrentRecipe.GetTotalIngredients() > 0;
+    }
+
+    private bool NearbyApplianceIsDeilveryPoint(out DeliveryPoint deliveryPoint)
+    {
+        deliveryPoint = nearbyAppliance.gameObject.GetComponent<DeliveryPoint>();
+        return deliveryPoint;
     }
 
     #endregion

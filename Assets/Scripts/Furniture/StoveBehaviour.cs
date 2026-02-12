@@ -26,13 +26,13 @@ public class StoveBehaviour : InteractiveAppliance
         else
         {
             placedIngredient.Cook(Time.deltaTime * cookingPower);
-            progressBar.UpdateProgressBar(placedIngredient);
+            progressBar.UpdateProgressBar(placedIngredient.GetCookProgress());
         }
     }
 
     protected override void OnPlacedItemChanged()
     {
-        bool isCooking = placedIngredient && !placedIngredient.IsBurnt();
+        bool isCooking = placedIngredient && !placedIngredient.IsBurnt;
         ToggleActiveStove(isCooking);
     }
 
@@ -44,6 +44,6 @@ public class StoveBehaviour : InteractiveAppliance
 
     private bool IsFinishedCooking()
     {
-        return cookingPower > 0.7 && placedIngredient.IsBurnt() || cookingPower <= 0.7 && placedIngredient.IsCooked();
+        return cookingPower > 0.7 && placedIngredient.IsBurnt || cookingPower <= 0.7 && placedIngredient.IsCooked;
     }
 }

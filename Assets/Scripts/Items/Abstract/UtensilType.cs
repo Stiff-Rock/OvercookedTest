@@ -1,6 +1,6 @@
 public enum UtensilType
 {
-    Plate,
     Pan,
+    Plate,
     Pot,
 }

@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     // References
     private CharacterController characterController;
@@ -12,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Values
     [Header("VALUES")]
+    private bool active;
     private Vector3 moveDirection;
     [SerializeField] private float movementSpeed = 5;
     [SerializeField] private float rotationSpeed = 50;
@@ -28,12 +28,15 @@ public class PlayerMovement : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
+        active = true;
     }
 
     private void Update()
     {
+        if (!active) return;
+
         GatherInputs();
-        Move();
+        ApplyMovement();
     }
 
     private void GatherInputs()
@@ -53,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
             moveDirection += Vector3.right;
     }
 
-    private void Move()
+    private void ApplyMovement()
     {
         bool isCurrentlyMoving = moveDirection != Vector3.zero;
         if (isWalking != isCurrentlyMoving)
@@ -72,5 +75,12 @@ public class PlayerMovement : MonoBehaviour
 
         // Move the player
         characterController.SimpleMove(moveDirectionNormalized * movementSpeed);
+    }
+
+    public void ToggleActive(bool active)
+    {
+        animator.SetBool(isWalkingHash, active);
+        moveDirection = Vector3.zero;
+        this.active = active;
     }
 }

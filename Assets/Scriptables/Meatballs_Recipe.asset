@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Meatballs_Recipe
   m_EditorClassIdentifier: Assembly-CSharp::Recipes
   <DishType>k__BackingField: 3
-  <RequiredIngredients>k__BackingField: 0200000008000000
+  <RequiredIngredients>k__BackingField: 0200000001000000
   <ExtraIngredients>k__BackingField: 
   <ResultPrefab>k__BackingField: {fileID: 0}
