@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,6 +11,9 @@ public class KitchenOrder : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dishNameText;
     [SerializeField] private Image lifetimeProgressBar;
     private Color initialBarColor;
+
+    [SerializeField] private GameObject tagPrefab;
+    [SerializeField] private Transform ingredientsRow;
 
     [Header("Properties")]
     [SerializeField] private float maxLifespan;
@@ -26,15 +30,20 @@ public class KitchenOrder : MonoBehaviour
         enabled = false;
     }
 
-    public void Initialize(Recipe recipe, float lifespan)
+    public void Initialize(Recipe recipe, float lifespan, IngredientVisuals ingredientVisualsSO)
     {
         Recipe = recipe;
         maxLifespan = lifespan;
         Lifespan = lifespan;
 
-        // Assing image and name
-        // recipeImage
         dishNameText.SetText(recipe.DishType.ToString());
+
+        foreach (IngredientType i in recipe.GetAllIngredients())
+        {
+            Sprite ingredientSprite = ingredientVisualsSO.GetSprite(i);
+            Image tagImg = Instantiate(tagPrefab, ingredientsRow).GetComponent<Image>();
+            tagImg.sprite = ingredientSprite;
+        }
 
         enabled = true;
     }

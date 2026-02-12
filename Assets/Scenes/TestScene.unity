@@ -2493,18 +2493,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: KitchenOrdersManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5634373851710064811, guid: 1e3d3512d9b67504c8d22f7e0ef402ac, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5634373851710064811, guid: 1e3d3512d9b67504c8d22f7e0ef402ac, type: 3}
-      propertyPath: m_TagString
-      value: KitchenOrdersManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 6878595794586033659, guid: 1e3d3512d9b67504c8d22f7e0ef402ac, type: 3}
-      propertyPath: orderLifespan
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 6878595794586033659, guid: 1e3d3512d9b67504c8d22f7e0ef402ac, type: 3}
       propertyPath: orderRowTransform
       value: 
@@ -2626,6 +2614,14 @@ PrefabInstance:
     - target: {fileID: 1552309314297509707, guid: a731aeeea69106d40917b56a6269a8a3, type: 3}
       propertyPath: m_Name
       value: IngredientCrate
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683527606137427239, guid: a731aeeea69106d40917b56a6269a8a3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 13dadc8d5ef26684d9c9a40951814efc, type: 3}
+    - target: {fileID: 2683527606137427239, guid: a731aeeea69106d40917b56a6269a8a3, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6397954341567080179, guid: a731aeeea69106d40917b56a6269a8a3, type: 3}
       propertyPath: m_LocalRotation.w

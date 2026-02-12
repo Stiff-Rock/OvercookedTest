@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6878595794586033659}
   m_Layer: 0
   m_Name: KitchenOrdersManager
-  m_TagString: Untagged
+  m_TagString: KitchenOrdersManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   orderRowTransform: {fileID: 0}
   kitchenOrderPanelPrefab: {fileID: 1033414131763373817, guid: 4f333bbab992f984ba79ffcce729a048, type: 3}
+  <IngredientVisualsSO>k__BackingField: {fileID: 11400000, guid: 2a1c703bb7676524da4b0d5ca87c9d35, type: 2}
   maxOrders: 5
   maxIngredientsLimit: 4
   orderLifespan: 180

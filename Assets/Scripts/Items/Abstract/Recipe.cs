@@ -130,6 +130,13 @@ public class Recipe
         return baseIngredients.Count + extraIngredients.Count;
     }
 
+    public IngredientType[] GetAllIngredients()
+    {
+        return baseIngredients.Concat(extraIngredients)
+            .Select(data => data.Type)
+            .ToArray();
+    }
+
     #endregion
 
     public override string ToString()

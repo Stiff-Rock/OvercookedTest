@@ -6,6 +6,7 @@ public class KitchenOrdersManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform orderRowTransform;
     [SerializeField] private GameObject kitchenOrderPanelPrefab;
+    [field: SerializeField] public IngredientVisuals IngredientVisualsSO { get; private set; }
 
     [Header("Settings")]
     [SerializeField] private int maxOrders = 5;
@@ -62,7 +63,7 @@ public class KitchenOrdersManager : MonoBehaviour
         newOrder.OnExpire.AddListener(ScoreManager.Instance.PenalizeScore);
         newOrder.OnExpire.AddListener(() => RemoveOrder(newOrder));
 
-        newOrder.Initialize(newOrderRecipe, orderLifespan);
+        newOrder.Initialize(newOrderRecipe, orderLifespan, IngredientVisualsSO);
 
         // Add the order to the list
         kitchenOrders.Add(newOrder);

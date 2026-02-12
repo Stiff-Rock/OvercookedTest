@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05002f7b72974e54ea70db5fc4eb1a44, type: 3}
+  m_Name: IngredientVisuals
+  m_EditorClassIdentifier: Assembly-CSharp::IngredientVisuals
+  lookupTable:
+  - type: 1
+    sprite: {fileID: 21300000, guid: 5929ad6f3deb1e64fa4668ac141593e9, type: 3}
+  - type: 2
+    sprite: {fileID: 21300000, guid: 13dadc8d5ef26684d9c9a40951814efc, type: 3}
+  - type: 3
+    sprite: {fileID: 21300000, guid: 1edfb79bbb78a144a83f92cb73a5bb39, type: 3}
+  - type: 4
+    sprite: {fileID: 21300000, guid: 7749d3042901d264b9b18c2ca9e1b654, type: 3}
+  - type: 5
+    sprite: {fileID: 21300000, guid: 41365b0cc05c9124988012a36d579f4b, type: 3}
+  - type: 6
+    sprite: {fileID: 21300000, guid: ee8ec996ad292fc428e779b6f905db3d, type: 3}
+  - type: 7
+    sprite: {fileID: 21300000, guid: a73f8513b940fd34f808eb09e55315e5, type: 3}
+  - type: 8
+    sprite: {fileID: 21300000, guid: 3cf881d04d0478240a4d83e4653d4a37, type: 3}

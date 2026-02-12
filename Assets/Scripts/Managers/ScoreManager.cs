@@ -13,7 +13,7 @@ public class ScoreManager : MonoBehaviour
 
     [Header("Score Settings")]
     [SerializeField] private int ingredientScoreValue = 50;
-    [SerializeField] private int timeScoreValue = 25;
+    [SerializeField] private int timeScoreValue = 5;
     [SerializeField] private int expireScorePenalty = 100;
 
     private void Awake()
