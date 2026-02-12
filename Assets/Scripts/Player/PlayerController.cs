@@ -79,8 +79,12 @@ public class PlayerController : MonoBehaviour
 
     public void ToggleActive(bool active)
     {
-        animator.SetBool(isWalkingHash, active);
-        moveDirection = Vector3.zero;
+        if (!active)
+        {
+            animator.SetBool(isWalkingHash, false);
+            moveDirection = Vector3.zero;
+        }
+
         this.active = active;
     }
 }

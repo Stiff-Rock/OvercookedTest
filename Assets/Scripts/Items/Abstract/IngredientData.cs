@@ -21,4 +21,9 @@ public class IngredientData
     }
 
     public override int GetHashCode() => HashCode.Combine(Type, State);
+
+    public override string ToString()
+    {
+        return $"IngredientType: {Type} || IngredientState: {State}";
+    }
 }

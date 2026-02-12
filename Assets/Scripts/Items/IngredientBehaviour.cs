@@ -87,12 +87,19 @@ public class IngredientBehaviour : PickableItemBehaviour
 
     public IngredientData ToIngredientData()
     {
-        IngredientState state = IngredientState.None;
+        if(Type == IngredientType.None)
+        {
+            Debug.LogError($"ToIngredientData() call failed: IngredientBehaviour '{gameObject.name}' IngredientType is none");
+            return null;
+        }
 
+        IngredientState state;
         if (IsCooked)
-            state |= IngredientState.Cooked;
+            state = IngredientState.Cooked;
         else if (IsBurnt)
-            state |= IngredientState.Burnt;
+            state = IngredientState.Burnt;
+        else
+            state = IngredientState.Raw;
 
         if (IsCut)
             state |= IngredientState.Cut;

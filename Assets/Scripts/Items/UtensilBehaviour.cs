@@ -36,7 +36,7 @@ public class UtensilBehaviour : PickableItemBehaviour
 
     public bool TryAddIngredient(IngredientBehaviour ingredientItem)
     {
-        bool added = CurrentRecipe.TryAddIngredient(ingredientItem);
+        bool added = CurrentRecipe.TryAddIngredient(ingredientItem.ToIngredientData());
 
         if (!added) return false;
 

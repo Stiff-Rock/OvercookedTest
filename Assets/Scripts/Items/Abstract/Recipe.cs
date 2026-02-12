@@ -26,23 +26,22 @@ public class Recipe
 
     public Recipe(DishType dishType, IngredientData[] baseIngredients)
     {
-        this.DishType = dishType;
+        DishType = dishType;
         this.baseIngredients = new(baseIngredients);
         extraIngredients = new();
     }
 
-    // BUG: THE RECIPES CURRENTLY DONT DISTINGUISH FROM CUT, COOKED OR BURNT
-    public bool TryAddIngredient(IngredientBehaviour newIngredient)
+    public bool TryAddIngredient(IngredientData newIngredient)
     {
-        if (AlreadyContainsIngredient(newIngredient.Type)) return false;
+        if (AlreadyContainsIngredient(newIngredient)) return false;
 
         // If the recipe is already matched and finished, check for the extra ingredients
         if (RecipeIsFinished())
         {
-            bool compatibleExtra = matchedRecipe.ExtraIngredients.Any(i => i.Type == newIngredient.Type);
+            bool compatibleExtra = matchedRecipe.ExtraIngredients.Contains(newIngredient);
 
             if (compatibleExtra)
-                extraIngredients.Add(newIngredient.ToIngredientData());
+                extraIngredients.Add(newIngredient);
 
             return compatibleExtra;
         }
@@ -52,13 +51,13 @@ public class Recipe
         // Check if the new ingredient is present in any of the possible recipes
         bool ingredientAccepted = possibleRecipes.Any(dish =>
         {
-            RecipeScriptableObject recipe = RecipesManager.Instance.DishToRecipe[dish];
-            return recipe.RequiredIngredients.Any(i => i.Type == newIngredient.Type);
+            RecipeScriptableObject recipeSO = RecipesManager.Instance.DishToRecipe[dish];
+            return recipeSO.RequiredIngredients.Contains(newIngredient);
         });
 
         if (ingredientAccepted)
         {
-            baseIngredients.Add(newIngredient.ToIngredientData());
+            baseIngredients.Add(newIngredient);
             FilterPossibleRecipes();
         }
 
@@ -80,9 +79,9 @@ public class Recipe
 
     #region Helper Methods
 
-    private bool AlreadyContainsIngredient(IngredientType newIngredient)
+    private bool AlreadyContainsIngredient(IngredientData newIngredient)
     {
-        return baseIngredients.Any(i => i.Type == newIngredient) || extraIngredients.Any(i => i.Type == newIngredient);
+        return baseIngredients.Contains(newIngredient) || extraIngredients.Contains(newIngredient);
     }
 
     // Filter recipes based on the current base ingredients

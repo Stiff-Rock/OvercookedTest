@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// TODO: CuttingBoardBehaviour
+// TODO: Model cut ingredients
 
 [RequireComponent(typeof(ProgressSliderBehaviour))]
 public class CuttingBoardBehaviour : InteractiveAppliance

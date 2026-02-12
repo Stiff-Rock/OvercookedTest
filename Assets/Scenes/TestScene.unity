@@ -2494,6 +2494,10 @@ PrefabInstance:
       value: KitchenOrdersManager
       objectReference: {fileID: 0}
     - target: {fileID: 5634373851710064811, guid: 1e3d3512d9b67504c8d22f7e0ef402ac, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5634373851710064811, guid: 1e3d3512d9b67504c8d22f7e0ef402ac, type: 3}
       propertyPath: m_TagString
       value: KitchenOrdersManager
       objectReference: {fileID: 0}

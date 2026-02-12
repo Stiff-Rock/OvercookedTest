@@ -1,6 +1,5 @@
 using UnityEngine;
 
-// BUG: THE RECIPES CURRENTLY DONT DISTINGUISH FROM CUT, COOKED OR BURNT
 [CreateAssetMenu(fileName = "NewRecipe", menuName = "Kitchen/Recipe")]
 public class RecipeScriptableObject : ScriptableObject
 {

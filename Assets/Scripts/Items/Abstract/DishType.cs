@@ -1,7 +1,7 @@
 ﻿public enum DishType
 {
     Undetermined,
-    // TODO: TO IMPLEMENT DishType
+    // TODO: MODEL DISHES
     FrenchFries,
     Hamburger,
     Meatballs,

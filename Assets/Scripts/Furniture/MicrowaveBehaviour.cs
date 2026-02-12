@@ -32,7 +32,6 @@ public class MicrowaveBehaviour : InteractiveAppliance
         }
     }
 
-    // TODO: REPENSAR ESTO
     private IEnumerator Cook()
     {
         if (placedIngredient)
