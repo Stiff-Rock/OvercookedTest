@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: Pasta_Recipe
   m_EditorClassIdentifier: Assembly-CSharp::Recipes
   <DishType>k__BackingField: 4
-  <RequiredIngredients>k__BackingField: 03000000
-  <ExtraIngredients>k__BackingField: 0100000002000000
+  <RequiredIngredients>k__BackingField:
+  - <Type>k__BackingField: 3
+    <State>k__BackingField: 2
+  - <Type>k__BackingField: 1
+    <State>k__BackingField: 2
+  <ExtraIngredients>k__BackingField:
+  - <Type>k__BackingField: 2
+    <State>k__BackingField: 6
   <ResultPrefab>k__BackingField: {fileID: 0}

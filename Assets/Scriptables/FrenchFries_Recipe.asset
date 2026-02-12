@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: FrenchFries_Recipe
   m_EditorClassIdentifier: Assembly-CSharp::Recipes
   <DishType>k__BackingField: 1
-  <RequiredIngredients>k__BackingField: 08000000
-  <ExtraIngredients>k__BackingField: 01000000
+  <RequiredIngredients>k__BackingField:
+  - <Type>k__BackingField: 8
+    <State>k__BackingField: 6
+  <ExtraIngredients>k__BackingField:
+  - <Type>k__BackingField: 1
+    <State>k__BackingField: 2
   <ResultPrefab>k__BackingField: {fileID: 0}

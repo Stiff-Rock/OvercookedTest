@@ -32,8 +32,8 @@ public class KitchenOrdersManager : MonoBehaviour
 
         // Extract recipe data
         DishType type = selectedRecipe.DishType;
-        IngredientType[] baseIngredients = selectedRecipe.RequiredIngredients;
-        List<IngredientType> possibleExtraIngredients = new(selectedRecipe.ExtraIngredients);
+        IngredientData[] baseIngredients = selectedRecipe.RequiredIngredients;
+        List<IngredientData> possibleExtraIngredients = new(selectedRecipe.ExtraIngredients);
 
         // Select a random extra ingredients amount
         int limit = Mathf.Min(possibleExtraIngredients.Count, maxIngredientsLimit - baseIngredients.Length);
@@ -45,7 +45,7 @@ public class KitchenOrdersManager : MonoBehaviour
             if (possibleExtraIngredients.Count <= 0) break;
 
             int newExtraIndex = Random.Range(0, possibleExtraIngredients.Count);
-            IngredientType newExtra = possibleExtraIngredients[newExtraIndex];
+            IngredientData newExtra = possibleExtraIngredients[newExtraIndex];
 
             if (!newOrderRecipe.TryAddExtra(newExtra))
                 i--;

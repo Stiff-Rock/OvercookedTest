@@ -7,7 +7,7 @@ public class IngredientBehaviour : PickableItemBehaviour
 
     // Cooking parameters
     [field: Header("Type")]
-    [field: SerializeField] public IngredientType IngredientType { get; private set; }
+    [field: SerializeField] public IngredientType Type { get; private set; }
 
     [Header("Attributes")]
     // Cooking
@@ -84,4 +84,19 @@ public class IngredientBehaviour : PickableItemBehaviour
     }
 
     #endregion
+
+    public IngredientData ToIngredientData()
+    {
+        IngredientState state = IngredientState.None;
+
+        if (IsCooked)
+            state |= IngredientState.Cooked;
+        else if (IsBurnt)
+            state |= IngredientState.Burnt;
+
+        if (IsCut)
+            state |= IngredientState.Cut;
+
+        return new IngredientData(Type, state);
+    }
 }

@@ -13,6 +13,20 @@ MonoBehaviour:
   m_Name: Hamburger_Recipe
   m_EditorClassIdentifier: Assembly-CSharp::Recipes
   <DishType>k__BackingField: 2
-  <RequiredIngredients>k__BackingField: 0700000002000000
-  <ExtraIngredients>k__BackingField: 0100000004000000050000000600000008000000
+  <RequiredIngredients>k__BackingField:
+  - <Type>k__BackingField: 7
+    <State>k__BackingField: 1
+  - <Type>k__BackingField: 2
+    <State>k__BackingField: 6
+  <ExtraIngredients>k__BackingField:
+  - <Type>k__BackingField: 1
+    <State>k__BackingField: 5
+  - <Type>k__BackingField: 4
+    <State>k__BackingField: 5
+  - <Type>k__BackingField: 5
+    <State>k__BackingField: 5
+  - <Type>k__BackingField: 6
+    <State>k__BackingField: 5
+  - <Type>k__BackingField: 8
+    <State>k__BackingField: 6
   <ResultPrefab>k__BackingField: {fileID: 0}

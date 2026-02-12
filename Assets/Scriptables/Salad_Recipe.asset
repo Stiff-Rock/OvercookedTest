@@ -13,6 +13,16 @@ MonoBehaviour:
   m_Name: Salad_Recipe
   m_EditorClassIdentifier: Assembly-CSharp::Recipes
   <DishType>k__BackingField: 5
-  <RequiredIngredients>k__BackingField: 0400000001000000
-  <ExtraIngredients>k__BackingField: 02000000050000000600000008000000
+  <RequiredIngredients>k__BackingField:
+  - <Type>k__BackingField: 4
+    <State>k__BackingField: 5
+  - <Type>k__BackingField: 1
+    <State>k__BackingField: 5
+  <ExtraIngredients>k__BackingField:
+  - <Type>k__BackingField: 5
+    <State>k__BackingField: 5
+  - <Type>k__BackingField: 2
+    <State>k__BackingField: 6
+  - <Type>k__BackingField: 6
+    <State>k__BackingField: 5
   <ResultPrefab>k__BackingField: {fileID: 0}

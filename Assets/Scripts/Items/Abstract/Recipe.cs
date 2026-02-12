@@ -10,8 +10,8 @@ public class Recipe
     [SerializeField] public DishType DishType { get; private set; }
 
     [Header("Ingredients")]
-    [SerializeField] private List<IngredientType> baseIngredients;
-    [SerializeField] private List<IngredientType> extraIngredients;
+    [SerializeField] private List<IngredientData> baseIngredients;
+    [SerializeField] private List<IngredientData> extraIngredients;
 
     // Cache
     [SerializeField] private List<DishType> possibleRecipes;
@@ -24,7 +24,7 @@ public class Recipe
         extraIngredients = new();
     }
 
-    public Recipe(DishType dishType, IngredientType[] baseIngredients)
+    public Recipe(DishType dishType, IngredientData[] baseIngredients)
     {
         this.DishType = dishType;
         this.baseIngredients = new(baseIngredients);
@@ -32,17 +32,17 @@ public class Recipe
     }
 
     // BUG: THE RECIPES CURRENTLY DONT DISTINGUISH FROM CUT, COOKED OR BURNT
-    public bool TryAddIngredient(IngredientType newIngredient)
+    public bool TryAddIngredient(IngredientBehaviour newIngredient)
     {
-        if (AlreadyContainsIngredient(newIngredient)) return false;
+        if (AlreadyContainsIngredient(newIngredient.Type)) return false;
 
         // If the recipe is already matched and finished, check for the extra ingredients
         if (RecipeIsFinished())
         {
-            bool compatibleExtra = matchedRecipe.ExtraIngredients.Contains(newIngredient);
+            bool compatibleExtra = matchedRecipe.ExtraIngredients.Any(i => i.Type == newIngredient.Type);
 
             if (compatibleExtra)
-                extraIngredients.Add(newIngredient);
+                extraIngredients.Add(newIngredient.ToIngredientData());
 
             return compatibleExtra;
         }
@@ -53,12 +53,12 @@ public class Recipe
         bool ingredientAccepted = possibleRecipes.Any(dish =>
         {
             RecipeScriptableObject recipe = RecipesManager.Instance.DishToRecipe[dish];
-            return recipe.RequiredIngredients.Contains(newIngredient);
+            return recipe.RequiredIngredients.Any(i => i.Type == newIngredient.Type);
         });
 
         if (ingredientAccepted)
         {
-            baseIngredients.Add(newIngredient);
+            baseIngredients.Add(newIngredient.ToIngredientData());
             FilterPossibleRecipes();
         }
 
@@ -69,10 +69,10 @@ public class Recipe
     {
         if (recipe.DishType != DishType) return false;
 
-        bool baseMatch = new HashSet<IngredientType>(baseIngredients)
+        bool baseMatch = new HashSet<IngredientData>(baseIngredients)
                          .SetEquals(recipe.baseIngredients);
 
-        bool extraMatch = new HashSet<IngredientType>(extraIngredients)
+        bool extraMatch = new HashSet<IngredientData>(extraIngredients)
                           .SetEquals(recipe.extraIngredients);
 
         return baseMatch && extraMatch;
@@ -82,7 +82,7 @@ public class Recipe
 
     private bool AlreadyContainsIngredient(IngredientType newIngredient)
     {
-        return baseIngredients.Contains(newIngredient) || extraIngredients.Contains(newIngredient);
+        return baseIngredients.Any(i => i.Type == newIngredient) || extraIngredients.Any(i => i.Type == newIngredient);
     }
 
     // Filter recipes based on the current base ingredients
@@ -116,7 +116,7 @@ public class Recipe
         return matchedRecipe && matchedRecipe.RequiredIngredients.Count() == baseIngredients.Count;
     }
 
-    public bool TryAddExtra(IngredientType newExtra)
+    public bool TryAddExtra(IngredientData newExtra)
     {
         if (extraIngredients.Contains(newExtra))
             return false;
