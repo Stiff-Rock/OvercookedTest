@@ -31,6 +31,7 @@ public class Recipe
         extraIngredients = new();
     }
 
+    // BUG: THE RECIPES CURRENTLY DONT DISTINGUISH FROM CUT, COOKED OR BURNT
     public bool TryAddIngredient(IngredientType newIngredient)
     {
         if (AlreadyContainsIngredient(newIngredient)) return false;
