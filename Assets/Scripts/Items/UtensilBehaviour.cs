@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-// TODO: UtensilBehaviour (Pots, Plates, Pans)
 public class UtensilBehaviour : PickableItemBehaviour
 {
     [field: SerializeField] public UtensilType UtensilType { get; private set; }
@@ -18,8 +17,6 @@ public class UtensilBehaviour : PickableItemBehaviour
         CurrentRecipe = new Recipe();
         heldIngredients = new List<IngredientBehaviour>();
     }
-
-    // TODO: pueden vertir su contenido sobre un plato, a no ser que esté a medio cocinar
 
     public void EmptyUtensil()
     {

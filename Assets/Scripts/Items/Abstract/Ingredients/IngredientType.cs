@@ -3,7 +3,6 @@
     None,
     Tomato,
     Meat,
-    // TODO: TO IMPLEMENT IngredientType
     Spaghetti,
 	Lettuce,
     Onion,

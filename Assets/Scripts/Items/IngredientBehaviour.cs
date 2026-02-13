@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// TODO: Modelar ingredientes, ingredientes cortados, platos y hacer algo para mejorar el aspecto cocinado
 public class IngredientBehaviour : PickableItemBehaviour
 {
     // References

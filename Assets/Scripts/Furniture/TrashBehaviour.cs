@@ -10,7 +10,6 @@ public class TrashBehaviour : InteractiveAppliance
         anim = GetComponentInChildren<Animator>();
     }
 
-    // BUG: Al tirar el contenido de un plato, se quita el plato de la mano del jugador
     public override void PlaceItem(PickableItemBehaviour dropped)
     {
         anim.SetTrigger(TrashAnimationTriggerKey);

@@ -138,19 +138,23 @@ public class PlayerInteraction : MonoBehaviour
 
     private void PickOrDrop()
     {
+
         // Deliver dish to delivery point
         if (CanDeliverDish() && NearbyApplianceIsDeilveryPoint(out DeliveryPoint deliveryPoint))
         {
             deliveryPoint.ServeOrder(((UtensilBehaviour)pickedItem).CurrentRecipe);
             ((UtensilBehaviour)pickedItem).EmptyUtensil();
         }
+        // Throw to trashcan
+        else if (CanThrowToTrash())
+        {
+            nearbyAppliance.PlaceItem(pickedItem);
+        }
         // Place item on appliance
         else if (CanPlaceItemOntoAppliance())
         {
             nearbyAppliance.PlaceItem(pickedItem);
-
             // BUG: Al tirar el contenido de un plato, se quita el plato de la mano del jugador
-
             DropItem();
         }
         // Take item from appliance
@@ -176,6 +180,11 @@ public class PlayerInteraction : MonoBehaviour
 
     #region Helper Methods
 
+    public PickableItemBehaviour GetPickedItem()
+    {
+        return pickedItem;
+    }
+
     public PickableItemBehaviour DropItem()
     {
         PickableItemBehaviour droppedItem = pickedItem;
@@ -183,9 +192,14 @@ public class PlayerInteraction : MonoBehaviour
         return droppedItem;
     }
 
+    private bool CanThrowToTrash()
+    {
+        return pickedItem && nearbyAppliance && nearbyAppliance.GetComponent<TrashBehaviour>();
+    }
+
     private bool CanPlaceItemOntoAppliance()
     {
-        return nearbyAppliance && pickedItem && !nearbyAppliance.HasItem();
+        return pickedItem && nearbyAppliance && !nearbyAppliance.HasItem();
     }
 
     private bool CanTakeItemFromAppliance()
