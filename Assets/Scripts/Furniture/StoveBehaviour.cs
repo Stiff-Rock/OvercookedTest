@@ -12,12 +12,17 @@ public class StoveBehaviour : InteractiveAppliance
     private void Awake()
     {
         progressBar = GetComponent<ProgressSliderBehaviour>();
-        enabled = placedIngredient;
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        enabled = placedUtensil && placedUtensil.PeekIngredient();
     }
 
     private void Update()
     {
-        if (!placedIngredient) return;
+        if (!placedUtensil) return;
 
         if (IsFinishedCooking())
         {
@@ -25,25 +30,34 @@ public class StoveBehaviour : InteractiveAppliance
         }
         else
         {
-            placedIngredient.Cook(Time.deltaTime * cookingPower);
-            progressBar.UpdateProgressBar(placedIngredient.GetCookProgress());
+            placedUtensil.PeekIngredient().Cook(Time.deltaTime * cookingPower);
+            progressBar.UpdateProgressBar(placedUtensil.PeekIngredient().GetCookProgress());
         }
     }
 
-    protected override void OnPlacedItemChanged()
+    public override void OnPlacedItemChanged()
     {
-        bool isCooking = placedIngredient && !placedIngredient.IsBurnt;
+        if (!placedUtensil || placedUtensil.UtensilType == UtensilType.Plate) {
+            ToggleActiveStove(false);
+            return; 
+        }
+
+        bool isCooking = placedUtensil.PeekIngredient() && !placedUtensil.PeekIngredient().IsBurnt;
+
         ToggleActiveStove(isCooking);
     }
 
     private void ToggleActiveStove(bool active)
     {
-        enabled = active;
         progressBar.SetActive(active);
+        enabled = active;
     }
 
     private bool IsFinishedCooking()
     {
-        return cookingPower > 0.7 && placedIngredient.IsBurnt || cookingPower <= 0.7 && placedIngredient.IsCooked;
+        return cookingPower > 0.7
+            && placedUtensil.PeekIngredient().IsBurnt
+            || cookingPower <= 0.7
+            && placedUtensil.PeekIngredient().IsCooked;
     }
 }

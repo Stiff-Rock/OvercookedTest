@@ -5,10 +5,10 @@ public class InteractiveAppliance : MonoBehaviour
 {
     [SerializeField] protected string applianceName;
     [SerializeField] protected GameObject placeArea;
-    [SerializeField] private PickableItemBehaviour _placedItem;
-
     protected PlayerController currentPlayer;
 
+    [Header("Readonly Values (Do not assing in editor)")]
+    [SerializeField] private PickableItemBehaviour _placedItem;
     public PickableItemBehaviour PlacedItem
     {
         get { return _placedItem; }
@@ -71,7 +71,7 @@ public class InteractiveAppliance : MonoBehaviour
         currentPlayer = playerController;
     }
 
-    protected virtual void OnPlacedItemChanged()
+    public virtual void OnPlacedItemChanged()
     {
     }
 

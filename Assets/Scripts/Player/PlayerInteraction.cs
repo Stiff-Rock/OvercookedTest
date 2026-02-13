@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// TODO: HIGHILIGHT INTERACTUABLE OBJECT
+
 [RequireComponent(typeof(MeshRenderer))]
 public class PlayerInteraction : MonoBehaviour
 {
@@ -113,8 +115,15 @@ public class PlayerInteraction : MonoBehaviour
             ingredient = i2;
             isIngredientOnAppliance = false;
         }
+        // Both are utensils
+        else if (held is UtensilBehaviour uHeld && placed is UtensilBehaviour uPlaced)
+        {
+            TryMoveIngredientBetweenUtensils(uHeld, uPlaced);
+            return;
+        }
         else return;
 
+        // Both are utensils, at least one is plate
         if (!utensil.TryAddIngredient(ingredient)) return;
 
         if (isIngredientOnAppliance)
@@ -206,6 +215,32 @@ public class PlayerInteraction : MonoBehaviour
     {
         deliveryPoint = nearbyAppliance.gameObject.GetComponent<DeliveryPoint>();
         return deliveryPoint;
+    }
+
+    private void TryMoveIngredientBetweenUtensils(UtensilBehaviour uHeld, UtensilBehaviour uPlaced)
+    {
+        UtensilBehaviour plate;
+        UtensilBehaviour other;
+
+        if (uHeld.UtensilType == UtensilType.Plate && uPlaced.UtensilType != UtensilType.Plate)
+        {
+            plate = uHeld;
+            other = uPlaced;
+        }
+        else if (uHeld.UtensilType != UtensilType.Plate && uPlaced.UtensilType == UtensilType.Plate)
+        {
+            plate = uPlaced;
+            other = uHeld;
+        }
+        else return;
+
+        IngredientBehaviour ingB = other.PeekIngredient();
+        if (other.CanTakeIngredient() && plate.TryAddIngredient(ingB))
+        {
+            other.RemoveIngredient();
+        }
+
+        else return;
     }
 
     #endregion

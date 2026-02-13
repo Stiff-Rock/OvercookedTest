@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 // TODO: UtensilBehaviour (Pots, Plates, Pans)
 public class UtensilBehaviour : PickableItemBehaviour
@@ -7,6 +8,7 @@ public class UtensilBehaviour : PickableItemBehaviour
     [field: SerializeField] public Recipe CurrentRecipe { get; private set; }
 
     [SerializeField] private Transform utensilContentTransform;
+    [SerializeField] private List<IngredientBehaviour> heldIngredients;
 
     private float stackHeightPos = 0f;
 
@@ -14,66 +16,86 @@ public class UtensilBehaviour : PickableItemBehaviour
     {
         base.Awake();
         CurrentRecipe = new Recipe();
+        heldIngredients = new List<IngredientBehaviour>();
     }
 
-    // Make a list of ingredients that the utensil accepts
-    // (for example, a Pan would be able to hold meat but a Pot could not,
-    // QUIZAS DEBE SER CADA INGREDIENTE EL QUE SEPA SOBRE QUE UTENSILIOS SE PUEDE PONER
-
-    // Las ollas y sartenes se usan poneindolas sobre una Stove
-
-    // Las ollas y sartenes solo podran almacenar un ingrediente a la vez
-    // y pueden vertir su contenido sobre un plato, a no ser que esté
-    // a medio cocinar
-
-    // Las ollas, platos y sartenes no se pueden meter en el microondas
+    // TODO: pueden vertir su contenido sobre un plato, a no ser que esté a medio cocinar
 
     public void EmptyUtensil()
     {
         CurrentRecipe = new Recipe();
-        DeleteChildren();
+        DeleteIngredients();
     }
 
     public bool TryAddIngredient(IngredientBehaviour ingredientItem)
     {
-        bool added = CurrentRecipe.TryAddIngredient(ingredientItem.ToIngredientData());
-
-        if (!added) return false;
-
-        if (UtensilType == UtensilType.Pan)
+        bool added;
+        if (UtensilType == UtensilType.Plate)
         {
+            added = CurrentRecipe.TryMergeIngredient(ingredientItem.ToIngredientData());
         }
-        else if (UtensilType == UtensilType.Plate)
+        else if (UtensilType == UtensilType.Pan || UtensilType == UtensilType.Pot)
         {
-        }
-        else if (UtensilType == UtensilType.Pot)
-        {
+            added = CurrentRecipe.TryAddIngredient(ingredientItem.ToIngredientData(), UtensilType);
         }
         else
         {
             Debug.LogError($"Utensil '{gameObject.name}' has no valid UtensilType (found {UtensilType})");
-            return false;
+            added = false;
         }
 
-        StackIngredients(ingredientItem);
+        if (added)
+        {
+            StackIngredients(ingredientItem);
+            var appliance = transform.parent.parent.GetComponent<InteractiveAppliance>();
+            if (appliance)
+                appliance.OnPlacedItemChanged();
+        }
 
-        return true;
+        return added;
+    }
+
+    public IngredientBehaviour RemoveIngredient()
+    {
+        IngredientBehaviour ingB = heldIngredients[0];
+
+        List<IngredientData> ingredients = CurrentRecipe.GetBaseIngredients();
+        ingredients.RemoveAt(0);
+
+        heldIngredients.RemoveAt(0);
+
+        var appliance = transform.parent.parent.GetComponent<InteractiveAppliance>();
+        if (appliance)
+            appliance.OnPlacedItemChanged();
+
+        return ingB;
+    }
+
+    public bool CanTakeIngredient()
+    {
+        return (UtensilType == UtensilType.Pan || UtensilType == UtensilType.Pot)
+            && heldIngredients.Count > 0
+            && heldIngredients[0]
+            && heldIngredients[0].IsCooked
+            || (!heldIngredients[0].IsBurnt && heldIngredients[0].GetCookProgress() <= 0);
+    }
+
+    public IngredientBehaviour PeekIngredient()
+    {
+        if (heldIngredients.Count <= 0) return null;
+        return heldIngredients[0];
     }
 
     #region Helper Methods
 
-    private void DeleteChildren()
+    private void DeleteIngredients()
     {
-        if (!utensilContentTransform)
+        foreach (IngredientBehaviour ingredient in heldIngredients)
         {
-            Debug.LogWarning("Cannot DeleteChildren since utensilContentTransform is null");
-            return;
+            Destroy(ingredient.gameObject);
         }
 
-        foreach (Transform child in utensilContentTransform)
-        {
-            Destroy(child.gameObject);
-        }
+        heldIngredients.Clear();
     }
 
     // TODO: En vez de esto, haz que tengan un transform que sea "TOP" para stackear mas fácil
@@ -97,6 +119,8 @@ public class UtensilBehaviour : PickableItemBehaviour
         );
 
         stackHeightPos += itemHeight;
+
+        heldIngredients.Add(ingredientItem);
     }
 
     #endregion

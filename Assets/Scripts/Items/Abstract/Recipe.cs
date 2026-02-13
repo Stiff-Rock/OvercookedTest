@@ -31,7 +31,8 @@ public class Recipe
         extraIngredients = new();
     }
 
-    public bool TryAddIngredient(IngredientData newIngredient)
+    // For merging ingredients on a plate
+    public bool TryMergeIngredient(IngredientData newIngredient)
     {
         if (AlreadyContainsIngredient(newIngredient)) return false;
 
@@ -62,6 +63,39 @@ public class Recipe
         }
 
         return ingredientAccepted;
+    }
+
+    // For adding ingredients to a pan or pot (can't hold more than one)
+    public bool TryAddIngredient(IngredientData newIngredient, UtensilType uType)
+    {
+        if (baseIngredients.Count >= 1 || AlreadyContainsIngredient(newIngredient)) return false;
+
+        IngredientData[] compatibleIngredients;
+        if (uType == UtensilType.Pan)
+        {
+            compatibleIngredients = RecipesManager.Instance.PanAcceptedIngredients;
+        }
+        else if (uType == UtensilType.Pot)
+        {
+            compatibleIngredients = RecipesManager.Instance.PotAcceptedIngredients;
+        }
+        else
+        {
+            Debug.LogError($"Failed to add ingredient to recipe: Found not valid utensil type ({uType})");
+            return false;
+        }
+
+        bool ingredientAccepted = compatibleIngredients.Contains(newIngredient);
+
+        if (ingredientAccepted)
+            baseIngredients.Add(newIngredient);
+
+        return ingredientAccepted;
+    }
+
+    public List<IngredientData> GetBaseIngredients()
+    {
+        return baseIngredients;
     }
 
     public bool Matches(Recipe recipe)

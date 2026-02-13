@@ -32,6 +32,12 @@ public class MicrowaveBehaviour : InteractiveAppliance
         }
     }
 
+    public override void PlaceItem(PickableItemBehaviour newItem)
+    {
+        if (newItem is UtensilBehaviour) return;
+        base.PlaceItem(newItem);
+    }
+
     private IEnumerator Cook()
     {
         if (placedIngredient)
