@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// TODO: HIGHILIGHT INTERACTUABLE OBJECT
-
 [RequireComponent(typeof(MeshRenderer))]
 public class PlayerInteraction : MonoBehaviour
 {
@@ -154,7 +152,6 @@ public class PlayerInteraction : MonoBehaviour
         else if (CanPlaceItemOntoAppliance())
         {
             nearbyAppliance.PlaceItem(pickedItem);
-            // BUG: Al tirar el contenido de un plato, se quita el plato de la mano del jugador
             DropItem();
         }
         // Take item from appliance

@@ -9,6 +9,8 @@ public class PickableItemBehaviour : MonoBehaviour
     private Collider physicsCollider;
     private Rigidbody rb;
 
+    private Transform currentParent;
+
     protected virtual void Awake()
     {
         triggerCollider = GetComponent<Collider>();
@@ -18,7 +20,8 @@ public class PickableItemBehaviour : MonoBehaviour
 
     protected virtual void Start()
     {
-        ToggleColliders(transform.parent == null);
+        currentParent = transform.parent;
+        ToggleColliders(currentParent == null);
     }
 
     public void ToggleColliders(bool isEnabled)
@@ -54,7 +57,11 @@ public class PickableItemBehaviour : MonoBehaviour
     {
         bool newParentTransformExists = transform.parent != null;
         ToggleColliders(!newParentTransformExists);
-        if (newParentTransformExists) UpdateTransform();
+
+        if (newParentTransformExists && currentParent != transform.parent)
+            UpdateTransform();
+        
+        currentParent = transform.parent;
     }
 
     #region Helper Methods

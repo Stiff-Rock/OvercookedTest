@@ -88,7 +88,7 @@ public class IngredientBehaviour : PickableItemBehaviour
 
     public IngredientData ToIngredientData()
     {
-        if(Type == IngredientType.None)
+        if (Type == IngredientType.None)
         {
             Debug.LogError($"ToIngredientData() call failed: IngredientBehaviour '{gameObject.name}' IngredientType is none");
             return null;

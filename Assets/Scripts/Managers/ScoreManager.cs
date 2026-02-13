@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -7,9 +8,15 @@ public class ScoreManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private TextMeshProUGUI scoreText;
+    // GameOverPanel
+    [SerializeField] private TextMeshProUGUI deliveredOrdersText;
+    [SerializeField] private TextMeshProUGUI failedOrdersText;
+    [SerializeField] private TextMeshProUGUI finalScoreText;
 
     [Header("Values")]
     [SerializeField] private int currentScore;
+    private int deliveredOrdersCount;
+    private int failedOrdersCount;
 
     [Header("Score Settings")]
     [SerializeField] private int ingredientScoreValue = 50;
@@ -38,10 +45,12 @@ public class ScoreManager : MonoBehaviour
             int lifespanScoreBonus = (int)order.Lifespan * timeScoreValue;
             int totalScore = orderScore + lifespanScoreBonus;
             UpdateScoreValue(totalScore);
+            ++deliveredOrdersCount;
         }
         else
         {
             PenalizeScore();
+            ++failedOrdersCount;
         }
     }
 
@@ -54,5 +63,12 @@ public class ScoreManager : MonoBehaviour
     {
         currentScore += change;
         scoreText.SetText($"{currentScore}");
+    }
+
+    public void ShowFinalScore()
+    {
+        deliveredOrdersText.SetText($"Orders Delivered: {deliveredOrdersCount}");
+        failedOrdersText.SetText($"Orders Failed: {failedOrdersCount}");
+        finalScoreText.SetText($"Final Score: {currentScore}");
     }
 }
