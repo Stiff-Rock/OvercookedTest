@@ -45,7 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   scoreText: {fileID: 0}
+  deliveredOrdersText: {fileID: 0}
+  failedOrdersText: {fileID: 0}
+  finalScoreText: {fileID: 0}
   currentScore: 0
-  ingredientScoreValue: 50
+  deliveredOrdersCount: 0
+  failedOrdersCount: 0
+  ingredientScoreValue: 10
   timeScoreValue: 5
   expireScorePenalty: 100
+  pointsAnimationDuration: 1.5

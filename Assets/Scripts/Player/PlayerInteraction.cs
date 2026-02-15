@@ -136,7 +136,6 @@ public class PlayerInteraction : MonoBehaviour
 
     private void PickOrDrop()
     {
-
         // Deliver dish to delivery point
         if (CanDeliverDish() && NearbyApplianceIsDeilveryPoint(out DeliveryPoint deliveryPoint))
         {
@@ -144,7 +143,7 @@ public class PlayerInteraction : MonoBehaviour
             ((UtensilBehaviour)pickedItem).EmptyUtensil();
         }
         // Throw to trashcan
-        else if (CanThrowToTrash())
+        if (CanThrowToTrash())
         {
             nearbyAppliance.PlaceItem(pickedItem);
         }

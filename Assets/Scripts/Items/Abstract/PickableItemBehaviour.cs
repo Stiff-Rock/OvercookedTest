@@ -20,8 +20,7 @@ public class PickableItemBehaviour : MonoBehaviour
 
     protected virtual void Start()
     {
-        currentParent = transform.parent;
-        ToggleColliders(currentParent == null);
+        ToggleColliders(!IsPlaced());
     }
 
     public void ToggleColliders(bool isEnabled)
@@ -30,21 +29,9 @@ public class PickableItemBehaviour : MonoBehaviour
         if (physicsCollider) physicsCollider.enabled = isEnabled;
 
         if (isEnabled)
-        {
             rb.constraints = RigidbodyConstraints.None;
-        }
         else
-        {
-            rb.constraints =
-                // Freeze Position
-                RigidbodyConstraints.FreezePositionX
-                | RigidbodyConstraints.FreezePositionY
-                | RigidbodyConstraints.FreezePositionZ
-                // Freeze Rotation
-                | RigidbodyConstraints.FreezeRotationX
-                | RigidbodyConstraints.FreezeRotationY
-                | RigidbodyConstraints.FreezeRotationZ;
-        }
+            rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
     private void UpdateTransform()
@@ -55,16 +42,21 @@ public class PickableItemBehaviour : MonoBehaviour
 
     public void OnTransformParentChanged()
     {
-        bool newParentTransformExists = transform.parent != null;
-        ToggleColliders(!newParentTransformExists);
+        bool isPlaced = IsPlaced();
+        ToggleColliders(!isPlaced);
 
-        if (newParentTransformExists && currentParent != transform.parent)
+        if (isPlaced && currentParent != transform.parent)
             UpdateTransform();
-        
+
         currentParent = transform.parent;
     }
 
     #region Helper Methods
+
+    private bool IsPlaced()
+    {
+        return transform.parent && transform.parent.gameObject.CompareTag("PlaceArea");
+    }
 
     public bool IsIngredient()
     {

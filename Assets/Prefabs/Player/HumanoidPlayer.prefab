@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9f955fecb429de40ae0735201731021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
+  hand: {fileID: 1622095555161474932}
   interactKey: 19
   pickDropKey: 31
   interactionLayer:
@@ -172,9 +173,7 @@ MonoBehaviour:
   interactionBox: {x: 0.2, y: 0.2}
   interactionRange: 1.2
   heightOffset: -1
-  playerColor: {r: 1, g: 0, b: 0, a: 0}
-  hand: {fileID: 1622095555161474932}
-  activeAppliance: {fileID: 0}
+  nearbyAppliance: {fileID: 0}
   nearbyItem: {fileID: 0}
   pickedItem: {fileID: 0}
 --- !u!1 &1622095555161474932
@@ -188,7 +187,7 @@ GameObject:
   - component: {fileID: 269808891711124402}
   m_Layer: 0
   m_Name: Hand
-  m_TagString: Untagged
+  m_TagString: PlaceArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -19,7 +19,6 @@ public class KitchenOrder : MonoBehaviour
     [SerializeField] private float maxLifespan;
     [field: SerializeField] public float Lifespan { get; private set; }
     [field: SerializeField] public Recipe Recipe { get; private set; }
-    [SerializeField] private bool isCompleted;
 
     [Header("Events")]
     public UnityEvent OnExpire;
@@ -60,24 +59,8 @@ public class KitchenOrder : MonoBehaviour
         {
             Lifespan = 0;
 
-            isCompleted = false;
             OnExpire.Invoke();
             enabled = false;
         }
     }
-
-    #region Getters and Setters
-
-    public bool IsCompleted()
-    {
-        return isCompleted;
-    }
-
-    public void SetIsCompleted(bool isCompleted)
-    {
-        enabled = !isCompleted;
-        this.isCompleted = isCompleted;
-    }
-
-    #endregion
 }

@@ -3,7 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class InteractiveAppliance : MonoBehaviour
 {
-    [SerializeField] protected string applianceName;
     [SerializeField] protected GameObject placeArea;
     protected PlayerController currentPlayer;
 
