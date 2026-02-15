@@ -51,3 +51,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7517013dac5dd0b408abdb6e656bbc42, type: 2}
   - {fileID: 11400000, guid: 1b3084f09791d934d820e1fa801840e8, type: 2}
   - {fileID: 11400000, guid: b1c1f10b00255c7438e20d9677bd7d79, type: 2}
+  <PanAcceptedIngredients>k__BackingField:
+  - <Type>k__BackingField: 2
+    <State>k__BackingField: 1
+  - <Type>k__BackingField: 2
+    <State>k__BackingField: 5
+  - <Type>k__BackingField: 5
+    <State>k__BackingField: 5
+  - <Type>k__BackingField: 8
+    <State>k__BackingField: 5
+  <PotAcceptedIngredients>k__BackingField:
+  - <Type>k__BackingField: 1
+    <State>k__BackingField: 1
+  - <Type>k__BackingField: 2
+    <State>k__BackingField: 5
+  - <Type>k__BackingField: 3
+    <State>k__BackingField: 1
